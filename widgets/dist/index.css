@@ -1,0 +1,29 @@
+body {
+    font-family: 'open sans';
+}
+
+
+#clock {
+    font-size: 28px;
+    color: white;
+    width: 550px;
+    height: 94px;
+    border: 2px solid black;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: orange;
+    background-size: cover;
+    background-position-y: 20%;
+}
+
+p {
+    display: flex;
+    width: 500px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 0; 
+}
+
+p span {
+    display: block;
+}
