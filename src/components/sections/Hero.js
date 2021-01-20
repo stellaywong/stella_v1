@@ -5,7 +5,8 @@ const Hero = (props) => {
 
     return (
         <div>
-            HERO SECTION
+            STELLA WONG
+            {/* <img src="./    .jpg" style={{width: "50%"}}></img> */}
         </div>
     )
 }

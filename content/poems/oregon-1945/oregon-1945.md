@@ -1,7 +1,7 @@
 ---
 date: "2019-12-02"
 title: "Oregon 1945"
-external link: "https://www.narrativemagazine.com/issues/poems-week-2017-2018/poem-week/oregon-1945-stella-wong"
+external_link: "https://www.narrativemagazine.com/issues/poems-week-2017-2018/poem-week/oregon-1945-stella-wong"
 ---
 
 IMAGINE in this earth’s atmosphere,\
