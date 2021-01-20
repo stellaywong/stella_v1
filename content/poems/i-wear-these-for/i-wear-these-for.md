@@ -1,7 +1,7 @@
 ---
 date: "2019-12-01"
 title: "[i wear these for]"
-external_link: "https://www.lareviewofbooks.org/edition/quarterly-journal-no-21-epistolary-issue/#!"
+external_link: "https://poets.org/academy-american-poets/harvard-university-poetry-prize-2016"
 ---
 
 i wear these for you to have forsaken the ways of the sea where the oxygen of blue slips through
