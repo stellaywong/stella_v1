@@ -6,8 +6,11 @@ const path = require('path')
 exports.onCreateNode = ({ node, actions }) => {
     const { createNode, createNodeField } = actions
 
+    
     if (node.internal.type === 'MarkdownRemark') {
-
+        const filePath = node.fileAbsolutePath.split("/");
+        
+        const category = filePath[filePath.length - 2];
         const slug = path.basename(node.fileAbsolutePath, '.md')
 
         createNodeField({
@@ -15,6 +18,17 @@ exports.onCreateNode = ({ node, actions }) => {
             name: 'slug',
             value: slug,
         })
+
+        createNodeField({
+            node,
+            name: 'category',
+            value: category,
+        })
+    }
+
+    if (node.internal.type === 'ImageSharp') {
+        console.log("node", node);
+        console.log("actions", actions);
     }
 }
 
