@@ -1,22 +1,25 @@
 import React from 'react'
 
-import { Header, Navbar, Footer } from '@components'
+import { Head, Navbar, Footer } from '@components'
 import { GlobalStyle } from '@styles'
 
 
 const Layout = (props) => {
 
-    return (
+    return (<>
+        <Head />
+        <GlobalStyle />
+
         <div id="root">
-            <GlobalStyle />
-            <Header />
             <Navbar />
 
-            {props.children}
+            <div id="content">
+                {props.children}
+            </div>
             
             <Footer />
         </div>
-    )
+    </>)
 }
 
 

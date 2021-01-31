@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 
-import { Layout, Hero, Poetry, Interviews, Projects } from '@components'
+import { Layout, Hero, Featured, Interviews, Projects } from '@components'
 
 
 
@@ -12,15 +12,11 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <Hero />
 
-      <h1 style={{
-        fontFamily: 'Escrow Condensed',
-        fontSize: 24,
-      }}>TEST</h1>
-      {/* {data.allFile.edges.map(edge => {
-        return <Img fluid={edge.node.childImageSharp.fluid} />
-      })} */}
+      <main>
+        <Hero />
+        <Featured />
+      </main>
     </Layout>
   )
 }
