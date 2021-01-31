@@ -20,14 +20,14 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/content`
+        path: path.join(__dirname, 'content'),
       }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: path.join(__dirname, 'src', 'images'),
+        path: path.join(__dirname, 'images'),
       }
     },
     'gatsby-plugin-sharp',
