@@ -1,34 +1,48 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 
 const StyledHero = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    margin: 10rem auto;
 `
 
-const StyledBigText = styled.div`
-    font-size: clamp(2rem, 12vw, 6rem);
-    font-family: var(--font-header);
-    font-weight: 700;
-    line-height: 1.1;
+const StyledBigText = styled.h1`
+    font-size: clamp(2rem, 10vw, 6rem);
+    margin-bottom: 1rem;
 `
 
-const StyledSubText = styled(StyledBigText)`
-    font-size: clamp(1.5rem, 2vw, 2rem);
-    color: var(--color-gray);
+const StyledSubText = styled.span`
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+`
+
+const GoToContent = styled.div`
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+
+    a {
+        color: inherit;
+        font-size: 30px;
+    }
 `
 
 
 const Hero = (props) => {
 
     return (
-        <StyledHero>
+        <StyledHero id="hero">
+            <StyledSubText>Poet, Software Engineer</StyledSubText>
             <StyledBigText>Stella Wong</StyledBigText>
-            <StyledSubText>Poet and Software Engineer</StyledSubText>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </StyledHero>
     )
 }

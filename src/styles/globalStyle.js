@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 
 import Reset from './reset'
 import Fonts from './fonts'
+import theme from './theme'
+import TransitionStyle from './transitionStyle'
 
 
 
@@ -15,16 +17,25 @@ const globalStyle = createGlobalStyle`
         --color-gray: #5d5d5d;
         --color-coral: #bc4e5b;
 
+        --color-bg: var(--color-beige);
+        --color-primary: var(--color-black);
+        --color-secondary: var(--color-coral);
+
         --font-text: 'Exchange', serif;
         --font-header: 'Escrow Condensed', serif;
     }
 
 
     body {
-        font-size: 16px;
-        background-color: var(--color-beige);
-        color: var(--color-black);
+        font-size: 14px;
+        background-color: var(--color-bg);
+        color: var(--color-primary);
         font-family: var(--font-text);
+        line-height: 1.3;
+
+        @media (min-width: ${theme.structure.tabletS}px) {
+            font-size: 16px;
+        }
     }
 
     h1,
@@ -60,14 +71,7 @@ const globalStyle = createGlobalStyle`
         font-size: 1.2rem;
     }
 
-
-    main {
-        width: 100%;
-        max-width: 1600px;
-        min-height: 100vh;
-        margin: 0px auto;
-        padding: 0px 150px;
-    }
+    ${TransitionStyle}
 `
 
 
