@@ -21,6 +21,7 @@ const StyledBigText = styled.h1`
 const StyledSubText = styled.span`
     font-size: 1.1rem;
     color: var(--color-secondary);
+    font-family: var(--font-sub);
 `
 
 const GoToContent = styled.div`
@@ -40,7 +41,7 @@ const Hero = (props) => {
 
     return (
         <StyledHero id="hero">
-            <StyledSubText>Poet, Software Engineer</StyledSubText>
+            <StyledSubText>Poet and Software Engineer</StyledSubText>
             <StyledBigText>Stella Wong</StyledBigText>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </StyledHero>

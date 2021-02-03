@@ -21,8 +21,9 @@ const globalStyle = createGlobalStyle`
         --color-primary: var(--color-black);
         --color-secondary: var(--color-coral);
 
-        --font-text: 'Exchange', serif;
-        --font-header: 'Escrow Condensed', serif;
+        --font-text: 'Roboto', serif;
+        --font-header: 'Lato', serif;
+        --font-sub: 'Dancing Script', serif;
     }
 
 
