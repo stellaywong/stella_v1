@@ -10,68 +10,34 @@ const StyledContainer = styled.nav`
     position: fixed;
     top: 0;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem 2rem;
+    
 
     @media (min-width: ${({theme}) => theme.structure.tabletS}px) {
         padding: 1rem 3rem;
     }
-
-
-    .transition-enter {
-        opacity: 0.01;
-        transform: translate(0, -10px);
-    }
-
-    .transition-enter-active {
-        opacity: 1;
-        transform: translate(0, 0);
-        transition: opacity 500ms ease-in;
-    }
-
-    .transition-exit {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-
-    .transition-exit-active {
-        opacity: 0.01;
-        transform: translate(0, 10px);
-        transition: opacity 500ms ease-in;
-    }
 `
 
-const StyledLogo = styled.h1`
-    margin: 0;
-`
 
-const StyledNav = styled.ol`
+
+const StyledNav = styled.ul`
     display: flex;
     margin: 0;
     list-style: none;
 
     li {
+        position: relative;
+        backface-visibility: hidden;
         margin: 0 5px;
         padding: 10px;
-        counter-increment: item 1;
-
-        &::marker {
-            color: var(--color-highlight);
-        }
     }
 
     a {
         color: inherit;
         text-decoration: none;
-
-        &:before {
-            content: '0' counter(item) '.';
-            margin-right: 5px;
-            color: var(--color-highlight);
-            // font-size: var(--fz-xxs);
-            text-align: right;
-          }
+        letter-spacing: 1px;
     }
 `
 
@@ -81,7 +47,6 @@ const Navbar = (props) => {
     const scrollDirection = useScrollDirection('down', 100);
 
     const handleScroll = () => {
-        // console.log(window.pageYOffset);
     }
 
     useEffect(() => {
@@ -91,25 +56,21 @@ const Navbar = (props) => {
 
     return (
         <StyledContainer>
-            <div key="glue">
-                <StyledLogo key="abc">SW</StyledLogo>
-
-            </div>
-
-                <TransitionGroup component={StyledNav}>
+            <StyledNav>
+                <TransitionGroup component={null}>
                     {navLinks.map(({name, url}, idx) => (
                         <CSSTransition key={idx}
                                         in={true}
                                         appear={true} 
-                                        timeout={300} 
-                                        classNames="fadeup">
+                                        timeout={2000} 
+                                        classNames="fadedown">
                             <li style={{ transitionDelay: `${idx + 1}00ms` }}>
                                 <Link to={url}>{name}</Link>
                             </li>
                         </CSSTransition>
                     ))}
                 </TransitionGroup>
-
+            </StyledNav>
         </StyledContainer>
     )
 }

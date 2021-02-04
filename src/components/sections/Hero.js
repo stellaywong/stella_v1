@@ -8,32 +8,36 @@ const StyledHero = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     position: relative;
     text-align: center;
-    margin: 10rem auto;
+    min-height: 100vh;
 `
 
 const StyledBigText = styled.h1`
-    font-size: clamp(2rem, 10vw, 6rem);
+    font-size: 4rem;
     margin-bottom: 1rem;
+    @media (min-width: ${({theme}) => theme.structure.tabletM}px) {
+        font-size: 6rem;
+    }
 `
 
 const StyledSubText = styled.span`
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--color-secondary);
     font-family: var(--font-sub);
+    @media (min-width: ${({theme}) => theme.structure.tabletM}px) {
+        font-size: 2.5rem;
+    }
 `
 
-const GoToContent = styled.div`
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    bottom: 0;
-
-    a {
-        color: inherit;
-        font-size: 30px;
-    }
+const StyledLine = styled.div`
+    width: 20vw;
+    max-width: 100px;
+    height: 4px;
+    margin: 3rem auto 0;
+    background-color: black;
 `
 
 
@@ -43,7 +47,7 @@ const Hero = (props) => {
         <StyledHero id="hero">
             <StyledSubText>Poet and Software Engineer</StyledSubText>
             <StyledBigText>Stella Wong</StyledBigText>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <StyledLine />
         </StyledHero>
     )
 }
