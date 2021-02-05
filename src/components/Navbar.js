@@ -13,8 +13,9 @@ const StyledContainer = styled.nav`
     justify-content: center;
     align-items: center;
     padding: 1rem 2rem;
+    background-color: var(--color-bg);
+    z-index: 10;
     
-
     @media (min-width: ${({theme}) => theme.structure.tabletS}px) {
         padding: 1rem 3rem;
     }
@@ -43,6 +44,7 @@ const StyledNav = styled.ul`
 
 
 const Navbar = (props) => {
+    const [isMounted, setIsMounted] = useState(false);
     const [scrolledToTop, setScrollToTop] = useState(true);
     const scrollDirection = useScrollDirection('down', 100);
 
@@ -50,7 +52,15 @@ const Navbar = (props) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        const timeout = setTimeout(() => {
+            setIsMounted(true);
+        }, 100);
+
+        return () => {
+            clearTimeout(timeout);
+        }
+
+        // window.addEventListener('scroll', handleScroll);
     }, [])
 
 
@@ -58,17 +68,17 @@ const Navbar = (props) => {
         <StyledContainer>
             <StyledNav>
                 <TransitionGroup component={null}>
-                    {navLinks.map(({name, url}, idx) => (
-                        <CSSTransition key={idx}
-                                        in={true}
-                                        appear={true} 
-                                        timeout={2000} 
-                                        classNames="fadedown">
-                            <li style={{ transitionDelay: `${idx + 1}00ms` }}>
-                                <Link to={url}>{name}</Link>
-                            </li>
-                        </CSSTransition>
-                    ))}
+                    {isMounted && (
+                        navLinks.map(({name, url}, idx) => (
+                            <CSSTransition key={idx}
+                                            timeout={2000} 
+                                            classNames="fadedown">
+                                <li style={{ transitionDelay: `${idx + 1}00ms` }}>
+                                    <Link to={url}>{name}</Link>
+                                </li>
+                            </CSSTransition>
+                        ))
+                    )}
                 </TransitionGroup>
             </StyledNav>
         </StyledContainer>

@@ -12,13 +12,15 @@ const StyledMain = styled.main`
     margin: 0 auto;
     padding: 0 2rem;
 
-    @media (min-width: ${theme.structure.tabletS}px) {
+    @media (min-width: ${theme.structure.desktopS}px) {
         padding: 0 150px;
     }
 `
 
 
 const Layout = (props) => {
+    const isHome = false;
+    const isLoading = false;
 
     return (<>
         <Head />
@@ -26,7 +28,6 @@ const Layout = (props) => {
         <div id="root">
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-
                 <Navbar />
 
                 <StyledMain>
@@ -34,6 +35,8 @@ const Layout = (props) => {
                 </StyledMain>
                 
                 <Footer />
+
+
             </ThemeProvider>
 
 

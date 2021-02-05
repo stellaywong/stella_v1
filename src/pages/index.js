@@ -1,8 +1,5 @@
 import React from "react"
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-
-import { Layout, Hero, Featured, Interviews, Projects } from '@components'
+import { Layout, Hero, Featured } from '@components'
 
 
 

@@ -15,7 +15,7 @@ const StyledHero = styled.section`
 `
 
 const StyledBigText = styled.h1`
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     @media (min-width: ${({theme}) => theme.structure.tabletM}px) {
         font-size: 6rem;
