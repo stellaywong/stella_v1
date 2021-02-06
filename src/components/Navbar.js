@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { navLinks } from '@config'
-import { useScrollDirection } from '@hooks'
+// import { useScrollDirection } from '@hooks'
 import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
@@ -45,11 +45,11 @@ const StyledNav = styled.ul`
 
 const Navbar = (props) => {
     const [isMounted, setIsMounted] = useState(false);
-    const [scrolledToTop, setScrollToTop] = useState(true);
-    const scrollDirection = useScrollDirection('down', 100);
+    // const [scrolledToTop, setScrollToTop] = useState(true);
+    // const scrollDirection = useScrollDirection('down', 100);
 
-    const handleScroll = () => {
-    }
+    // const handleScroll = () => {
+    // }
 
     useEffect(() => {
         const timeout = setTimeout(() => {

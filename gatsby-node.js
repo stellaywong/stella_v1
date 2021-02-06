@@ -78,6 +78,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             '@pages': path.resolve(__dirname, 'src/pages'),
             '@styles': path.resolve(__dirname, 'src/styles'),
             '@templates': path.resolve(__dirname, 'src/templates'),
+            '@util': path.resolve(__dirname, 'src/util'),
         },
         },
     });

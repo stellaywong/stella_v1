@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { transitionTimer } from '@util'
 
 
 const StyledHero = styled.section`
@@ -41,13 +41,28 @@ const StyledLine = styled.div`
 `
 
 
+const items = [
+    <StyledSubText>Poet and Software Engineer</StyledSubText>,
+    <StyledBigText>Stella Wong</StyledBigText>,
+    <StyledLine />,
+]
+
+
 const Hero = (props) => {
 
     return (
         <StyledHero id="hero">
-            <StyledSubText>Poet and Software Engineer</StyledSubText>
-            <StyledBigText>Stella Wong</StyledBigText>
-            <StyledLine />
+            <TransitionGroup component={null}>
+                {items.map((item, i) => (
+                    <CSSTransition key={i} 
+                                    classNames="fadeup" 
+                                    in={true}
+                                    appear={true}
+                                    timeout={(i + 1) * 100 + transitionTimer}>
+                    <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </StyledHero>
     )
 }

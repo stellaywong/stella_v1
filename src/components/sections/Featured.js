@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { srConfig } from '@config'
 import ScrollReveal from 'scrollreveal';
 
@@ -15,8 +14,28 @@ const StyledFeatured = styled.div`
 `
 
 const Title = styled.h2`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 1.6rem;
 	text-align: center;
+
+	&:before,
+    &:after {
+		display: block;
+        content: "";
+        height: 2px;
+        width: 5vw;
+        background-color: var(--color-black);
+	}
+	
+	&:before {
+		margin-right: 1rem;
+	}
+
+	&:after {
+		margin-left: 1rem;
+	}
 `
 
 const CardGrid = styled.div`
@@ -101,6 +120,7 @@ const Featured = (props) => {
 			) {
 			edges {
 				node {
+					id
 					frontmatter {
 						title
 						publisher
@@ -135,12 +155,13 @@ const Featured = (props) => {
 
 				<CardGrid>
 					{data.allMarkdownRemark.edges.map((edge, idx) => {
-						const {title, publisher, external_link, featuredImage} = edge.node.frontmatter;
+						const { id } = edge.node;
+						const { title, publisher, external_link, featuredImage } = edge.node.frontmatter;
 						const even = idx % 2 === 0;
 						
 						return (
-
-								<Card even={even}
+								<Card key={id}
+										even={even}
 										ref={el => featuredRef.current[idx] = el}>
 									<Img fluid={featuredImage.childImageSharp.fluid} />
 									<div className="text-area">

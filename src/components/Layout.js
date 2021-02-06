@@ -19,9 +19,6 @@ const StyledMain = styled.main`
 
 
 const Layout = (props) => {
-    const isHome = false;
-    const isLoading = false;
-
     return (<>
         <Head />
 

@@ -28,8 +28,6 @@ const useScrollDirection = ({ initialDirection, thresholdPixels }) => {
         return () => window.removeEventListener('scroll', updateScrollDirection);
     }, [initialDirection])
 
-    console.log(scrollDirection)
-
     return scrollDirection;
 }
 
