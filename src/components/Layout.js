@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { Head, Navbar, Footer } from '@components'
+import { Head, Navbar } from '@components'
 import { GlobalStyle, theme } from '@styles'
 import styled from 'styled-components'
 
@@ -30,14 +30,8 @@ const Layout = (props) => {
                 <StyledMain>
                     {props.children}
                 </StyledMain>
-                
-                <Footer />
-
 
             </ThemeProvider>
-
-
-
         </div>
     </>)
 }
