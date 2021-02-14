@@ -25,11 +25,6 @@ exports.onCreateNode = ({ node, actions }) => {
             value: category,
         })
     }
-
-    if (node.internal.type === 'ImageSharp') {
-        console.log("node", node);
-        console.log("actions", actions);
-    }
 }
 
 
@@ -78,7 +73,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             '@pages': path.resolve(__dirname, 'src/pages'),
             '@styles': path.resolve(__dirname, 'src/styles'),
             '@templates': path.resolve(__dirname, 'src/templates'),
-            '@util': path.resolve(__dirname, 'src/util'),
+            '@utils': path.resolve(__dirname, 'src/utils'),
         },
         },
     });

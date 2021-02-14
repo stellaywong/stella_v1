@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { transitionTimer } from '@util'
+import { transitionTimer } from '@utils/util'
 
 // https://reactcommunity.org/react-transition-group/css-transition
 

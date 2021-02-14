@@ -158,6 +158,8 @@ const Featured = (props) => {
 						const { id } = edge.node;
 						const { title, publisher, external_link, featuredImage } = edge.node.frontmatter;
 						const even = idx % 2 === 0;
+
+						console.log(edge);
 						
 						return (
 								<Card key={id}

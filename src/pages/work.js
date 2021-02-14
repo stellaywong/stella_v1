@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { Layout } from '@components'
 import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { transitionTimer } from '@util'
+import { transitionTimer } from '@utils/util'
 
 
 const StyledContainer = styled.div`

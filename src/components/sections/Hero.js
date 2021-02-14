@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { transitionTimer } from '@util'
+import { transitionTimer } from '@utils/util'
 
 
 const StyledHero = styled.section`
