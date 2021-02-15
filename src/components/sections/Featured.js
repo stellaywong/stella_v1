@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { srConfig } from '@config'
 import ScrollReveal from 'scrollreveal';
+import Rhymestein from '../../../gifs/rhymestein.gif'
 
 
 
@@ -124,7 +125,9 @@ const Featured = (props) => {
 					frontmatter {
 						title
 						publisher
+						description
 						external_link
+						featuredGif
 						featuredImage {
 								childImageSharp {
 									fluid(maxWidth: 800, quality: 90) {
@@ -156,19 +159,31 @@ const Featured = (props) => {
 				<CardGrid>
 					{data.allMarkdownRemark.edges.map((edge, idx) => {
 						const { id } = edge.node;
-						const { title, publisher, external_link, featuredImage } = edge.node.frontmatter;
+						const { title, publisher, description, external_link, featuredGif, featuredImage } = edge.node.frontmatter;
 						const even = idx % 2 === 0;
-
-						console.log(edge);
+						
+						if(featuredGif) {
+							const giffy = require(`@gifs/${featuredGif}`);
+							console.log(giffy);
+						}
 						
 						return (
 								<Card key={id}
 										even={even}
 										ref={el => featuredRef.current[idx] = el}>
-									<Img fluid={featuredImage.childImageSharp.fluid} />
+									
+									{featuredImage && 
+									<Img fluid={featuredImage.childImageSharp.fluid} />}
+
+									{featuredGif &&
+									<img src={require(`@gifs/${featuredGif}`)} />}
+
 									<div className="text-area">
-										<h4 className="featured-title">{publisher}</h4>
-										<p>{title}</p>
+										{publisher &&
+										<h4 className="featured-title">{publisher}</h4>}
+
+										{title &&
+										<p>{title}</p>}
 
 										<a href={external_link}>
 												<FontAwesomeIcon icon={faExternalLinkAlt} />
