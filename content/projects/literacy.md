@@ -1,9 +1,9 @@
 ---
-date: "2018-10-01"
-title: "Rhymestein"
+date: "2018-08-01"
+title: "Global Female Literacy Rates"
 description: A dynamic data visualization in force-directed graph data visualization in force-directed graph.
-external_link: "http://rhymestein.herokuapp.com/"
+external_link: "http://stella-wong.com/Literacy/"
 featured: true
-featuredMp4: rhymestein.mp4
+featuredMp4: literacy.mp4
 ---
 

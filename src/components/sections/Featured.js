@@ -40,42 +40,62 @@ const Title = styled.h2`
 `
 
 const CardGrid = styled.div`
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	gap: 20px;
 	grid-template-columns: 1fr;
 
-	@media (min-width: ${(({theme}) => theme.structure.tabletM)}px) {
-        grid-template-columns: 1fr 1fr;
-	}
+	// @media (min-width: ${(({theme}) => theme.structure.tabletM)}px) {
+    //     grid-template-columns: 1fr 1fr;
+	// }
 	
-	@media (min-width: ${(({theme}) => theme.structure.desktopS)}px) {
-        gap: 2rem;
-    }
+	// @media (min-width: ${(({theme}) => theme.structure.desktopS)}px) {
+    //     gap: 2rem;
+    // }
 `
 
 
 const Card = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	position: relative;
-	border: 1px solid #c6c7c1;
 	margin-bottom: 2rem;
-	box-shadow: 2px 2px 2px #010101;
 	visibility: hidden;
+	
+	.card-head-image {
+		padding-top: 100%; /* 1:1 Aspect Ratio */
+	}
 
-	.gatsby-image-wrapper {
+	.card-head {
+		position:relative;
+		border: 1px solid #e0e0e0;
+		box-sizing: border-box;
+		line-height: 0;
 		width: 100%;
-		height: 300px;
-		border-bottom: 1px solid #c6c7c1;
+
+		.gatsby-image-wrapper {
+			position: absolute !important;
+			overflow: initial !important;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+		}
+
+		video {
+			width: 100%;
+		}
 	}
 
-	.text-area {
-		padding: 1rem;
-		text-align: ${({even}) => even ? "left" : "right"};
-		background-color: #f2f2f2;
-	}
-
-	h4 {
-		color: var(--color-secondary);
-		margin-bottom: 0.5rem;
+	.card-content {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		line-height: 1.5;
+		width: 100%;
 	}
 
 	p {
@@ -83,24 +103,61 @@ const Card = styled.div`
 	}
 
 	a {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
 		color: var(--color-coral);
-		font-size: 16px;
+		font-family: var(--font-header);
 	}
 
-	@media (min-width: ${(({theme}) => theme.structure.tabletS)}px) {
-        .gatsby-image-wrapper {
-			height: 400px;
+
+	@media (min-width: ${({theme}) => theme.structure.tabletS}px) {
+		.card-head-image {
+			padding-top: 75%; /* 1:1 Aspect Ratio */
+		}
+
+		.card-head {
+			width: 75%;
+		}
+
+		.card-content {
+			width: 75%;
 		}
 	}
 
-	@media (min-width: ${(({theme}) => theme.structure.desktopS)}px) {
-		.gatsby-image-wrapper {
-			height: 400px;
+	@media (min-width: ${({theme}) => theme.structure.tabletM}px) {
+		flex-direction: ${({even}) => even ? "row" : "row-reverse"};
+		align-items: normal;
+		
+		.card-head-image {
+			padding-top: 50%; /* 1:1 Aspect Ratio */
+		}
+
+		.card-head {
+			width: 50%;
+		}
+
+		.card-content {
+			width: 50%;
+			${({even}) => even ? (
+				"text-align: left; padding-left: 1.5rem;"
+			) : ( 
+				"text-align: right; padding-right: 1.5rem;"
+			)}
+
+			&:before {
+				content: '';
+				position: absolute;
+				height: 30%;
+				width: 10px;
+				background-color: var(--color-coral);
+				${({even}) => even ? "left: 0;" : "right: 0;"}
+			}
+		}
+
+		a {
+			font-size: 2.5rem;
 		}
 	}
-	
-
-
 `
 
 
@@ -111,6 +168,10 @@ const Featured = (props) => {
 	const data = useStaticQuery(graphql`
 		query {
 			allMarkdownRemark (
+				sort: {
+					fields: frontmatter___date
+					order: DESC
+				}
 				filter: {
 					frontmatter: {
 						featured: {
@@ -127,7 +188,7 @@ const Featured = (props) => {
 						publisher
 						description
 						external_link
-						featuredGif
+						featuredMp4
 						featuredImage {
 								childImageSharp {
 									fluid(maxWidth: 800, quality: 90) {
@@ -159,35 +220,47 @@ const Featured = (props) => {
 				<CardGrid>
 					{data.allMarkdownRemark.edges.map((edge, idx) => {
 						const { id } = edge.node;
-						const { title, publisher, description, external_link, featuredGif, featuredImage } = edge.node.frontmatter;
-						const even = idx % 2 === 0;
+						const { title, publisher, description, external_link, featuredMp4, featuredImage } = edge.node.frontmatter;
 						
-						if(featuredGif) {
-							const giffy = require(`@gifs/${featuredGif}`);
-							console.log(giffy);
-						}
-						
+						const headClassnames = ["card-head"];
+						if(featuredImage) headClassnames.push("card-head-image");
+
 						return (
 								<Card key={id}
-										even={even}
+										even={idx % 2 === 0}
 										ref={el => featuredRef.current[idx] = el}>
 									
-									{featuredImage && 
-									<Img fluid={featuredImage.childImageSharp.fluid} />}
+									<div className={headClassnames.join(" ")}>
+										{featuredImage && 
+										<Img fluid={featuredImage.childImageSharp.fluid} />}
 
-									{featuredGif &&
-									<img src={require(`@gifs/${featuredGif}`)} />}
+										{featuredMp4 &&
+										<video autoPlay loop muted>
+											<source src={require(`@mp4s/${featuredMp4}`)} type="video/mp4" />
+										</video>}
+									</div>
 
-									<div className="text-area">
-										{publisher &&
-										<h4 className="featured-title">{publisher}</h4>}
 
-										{title &&
-										<p>{title}</p>}
+									<div className="card-content">
+										{publisher ? (<>
+											<div>
+												<a href={external_link}>{publisher}</a>
+											</div>
+												
+											{title && 
+											<p>{title}</p>}
 
-										<a href={external_link}>
-												<FontAwesomeIcon icon={faExternalLinkAlt} />
-										</a>
+										</>) : (<>
+											<div>
+												<a href={external_link}>{title}</a>
+											</div>
+
+											{description &&
+											<p>{description}</p>}
+
+										</>)
+									}
+
 
 									</div>
 								</Card>

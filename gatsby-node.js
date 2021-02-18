@@ -77,7 +77,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
                 '@config': path.resolve(__dirname, 'src/config'),
                 '@fonts': path.resolve(__dirname, 'src/fonts'),
                 '@hooks': path.resolve(__dirname, 'src/hooks'),
-                '@gifs': path.resolve(__dirname, 'gifs'),
+                '@mp4s': path.resolve(__dirname, 'mp4s'),
                 '@pages': path.resolve(__dirname, 'src/pages'),
                 '@styles': path.resolve(__dirname, 'src/styles'),
                 '@templates': path.resolve(__dirname, 'src/templates'),
