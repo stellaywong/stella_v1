@@ -182,7 +182,7 @@ const Featured = (props) => {
 						featuredMp4
 						featuredImage {
 								childImageSharp {
-									fluid(maxWidth: 800, quality: 90) {
+									fluid(maxWidth: 800, quality: 80) {
 										...GatsbyImageSharpFluid
 									}
 								}
