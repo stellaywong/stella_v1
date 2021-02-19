@@ -13,13 +13,13 @@ module.exports = {
             url: "/work",
         }
     ],
-    srConfig: (delay = 200) => ({
+    srConfig: (delay = 300) => ({
         delay,
-        distance: '20px',
+        distance: '30px',
         duration: 500,
         easing: 'ease-in',
         // reset: false,
         opacity: 0,
-        viewFactor: 0.25,
+        viewFactor: 0.35,
       }),
 }
