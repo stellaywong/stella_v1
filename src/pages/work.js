@@ -91,7 +91,6 @@ const WorkPage = (props) => {
                     node {
                         id
                         frontmatter {
-                            date
                             title
                             publisher
                             external_link
@@ -114,11 +113,11 @@ const WorkPage = (props) => {
 
         const queryData = {};
         query.allMarkdownRemark.edges.forEach(edge => {
-            const { category } = edge.node.fields;
-            const { id, frontmatter } = edge.node;
+            const { id, frontmatter, fields } = edge.node;
+            const { category } = fields;
         
             if(!queryData[category]) queryData[category] = [];
-            queryData[category].push({ id, ...frontmatter });
+            queryData[category].push({ id, ...frontmatter, fields });
         })
         setData(queryData);
 
@@ -145,87 +144,88 @@ const WorkPage = (props) => {
     return (
         <Layout>
             <StyledContainer>
-                    <StyledCategories>
-                        <TransitionGroup component={null}>
-                            {Object.keys(data).map((name, idx, array) => (
-                                <CSSTransition key={idx + "-category"}
-                                                timeout={array.length * 100 + transitionTimer}
-                                                classNames="fadedown">
-                                    <button key={idx}
-                                            style={{ transitionDelay: `${idx + 1}00ms`}}
-                                            className={name === category ? "category-active" : "category"}
-                                            onClick={() => handleCategoryChange(category, name)}>
-                                        {name}
-                                    </button>
-                                </CSSTransition>
-                            ))}
-                        </TransitionGroup>
-                    </StyledCategories>
+                <StyledCategories>
+                    <TransitionGroup component={null}>
+                        {Object.keys(data).map((name, idx, array) => (
+                            <CSSTransition key={idx + "-category"}
+                                            timeout={array.length * 100 + transitionTimer}
+                                            classNames="fadedown">
+                                <button key={idx}
+                                        style={{ transitionDelay: `${idx + 1}00ms`}}
+                                        className={name === category ? "category-active" : "category"}
+                                        onClick={() => handleCategoryChange(category, name)}>
+                                    {name}
+                                </button>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </StyledCategories>
 
-
-                    <StyledDivider />
+                <StyledDivider />
 
                 <StyledContent>
                         {isMounted &&
-                            (data[category] || []).map(({id, publisher, title, external_link, forthcoming}, idx, array) => (
+                            (data[category] || []).map((item, idx, array) => {
+                                const {id, publisher, title, external_link, forthcoming, fields} = item;
 
-                                <div className="work-item" key={id}>
-                                    {forthcoming &&
-                                    <CSSTransition key={id + "-forthcoming"}
-                                                    timeout={array.length * 100 + transitionTimer}
-                                                    in={animateIn}
-                                                    appear={true}
-                                                    unmountOnExit
-                                                    classNames="fade">
-                                        <p className="forthcoming">forthcoming</p>
-                                    </CSSTransition>}
+                                return (
+                                    <div className="work-item" key={id}>
+                                        {forthcoming &&
+                                        <CSSTransition key={id + "-forthcoming"}
+                                                        timeout={array.length * 100 + transitionTimer}
+                                                        in={animateIn}
+                                                        appear={true}
+                                                        unmountOnExit
+                                                        classNames="fade">
+                                            <p className="forthcoming">forthcoming</p>
+                                        </CSSTransition>}
 
-                                    {external_link ? (
+                                        {publisher &&
                                         <CSSTransition key={id + "-publisher"}
                                                         timeout={array.length * 100 + transitionTimer}
                                                         in={animateIn}
                                                         appear={true}
                                                         unmountOnExit
                                                         classNames="fadeleft">
-                                            <a href={external_link}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                style={{transitionDelay: `${1 + idx}00ms`}}>
+                                            {external_link ? (
+                                                <a href={external_link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    style={{transitionDelay: `${1 + idx}00ms`}}>
+                                                        {publisher}
+                                                </a>
+                                            ) : (
+                                                <h5 style={{transitionDelay: `${1 + idx}00ms`}}>
                                                     {publisher}
-                                            </a>   
-                                        </CSSTransition>
-                                    ) : (
-                                        <CSSTransition key={id + "-publisher"}
+                                                </h5>
+                                            )}
+                                        </CSSTransition>}
+
+                                        {title &&
+                                        <CSSTransition key={id + "-title"}
                                                         timeout={array.length * 100 + transitionTimer}
                                                         in={animateIn}
                                                         appear={true}
                                                         unmountOnExit
-                                                        classNames="fadeleft">
-                                            <h5 style={{transitionDelay: `${1 + idx}00ms`}}>
-                                                {publisher}
-                                            </h5>
-                                        </CSSTransition>
-                                    )}
-
-                                    <CSSTransition key={id + "-title"}
-                                                    timeout={array.length * 100 + transitionTimer}
-                                                    in={animateIn}
-                                                    appear={true}
-                                                    unmountOnExit
-                                                    classNames="faderight">
-                                        <p style={{transitionDelay: `${1 + idx}00ms`}}>
-                                            {title}</p>
-                                    </CSSTransition>
-                                </div>
-                            ))
+                                                        classNames="faderight">
+                                            {!publisher && external_link ? (
+                                                <a href={external_link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    style={{transitionDelay: `${1 + idx}00ms`}}>
+                                                        {title}
+                                                </a>
+                                            ) : (
+                                                <p style={{transitionDelay: `${1 + idx}00ms`}}>
+                                                    {title}</p>
+                                            )}
+                                        </CSSTransition>}
+                                    </div>
+                                )
+                            })
                         }
-
-
-
                 </StyledContent>
-
             </StyledContainer>
-
         </Layout>
     )
 }

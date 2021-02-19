@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Layout, Hero, Featured } from '@components'
-
 
 
 const IndexPage = (props) => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Layout>
@@ -14,39 +16,5 @@ const IndexPage = (props) => {
     </Layout>
   )
 }
-
-
-// export const query = graphql`
-//   query {
-//     allMarkdownRemark (
-//       filter: {
-//         frontmatter: {
-//           featured: {
-//             eq: true
-//           }
-//         }
-//       }
-//     ) {
-//       edges {
-//         node {
-//           frontmatter {
-//             title
-//             external_link
-//             featuredImage {
-//               childImageSharp {
-//                 fluid(maxWidth: 800) {
-//                   ...GatsbyImageSharpFluid
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
-
-
-
 
 export default IndexPage

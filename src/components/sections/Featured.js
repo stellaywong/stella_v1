@@ -219,8 +219,8 @@ const Featured = (props) => {
 
 				<CardGrid>
 					{data.allMarkdownRemark.edges.map((edge, idx) => {
-						const { id } = edge.node;
-						const { title, publisher, description, external_link, featuredMp4, featuredImage } = edge.node.frontmatter;
+						const { id, frontmatter } = edge.node;
+						const { title, publisher, description, external_link, featuredMp4, featuredImage } = frontmatter;
 						
 						const headClassnames = ["card-head"];
 						if(featuredImage) headClassnames.push("card-head-image");
@@ -240,7 +240,6 @@ const Featured = (props) => {
 										</video>}
 									</div>
 
-
 									<div className="card-content">
 										{publisher ? (<>
 											<div>
@@ -249,18 +248,14 @@ const Featured = (props) => {
 												
 											{title && 
 											<p>{title}</p>}
-
 										</>) : (<>
 											<div>
 												<a href={external_link}>{title}</a>
 											</div>
+										</>)}
 
-											{description &&
-											<p>{description}</p>}
-
-										</>)
-									}
-
+										{description &&
+										<p>{description}</p>}
 
 									</div>
 								</Card>
