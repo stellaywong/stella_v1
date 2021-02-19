@@ -74,7 +74,6 @@ const StyledContent = styled.div`
     }
 `
 
-
 const WorkPage = (props) => {
     const [isMounted, setIsMounted] = useState(false);
     const [animateIn, setAnimateIn] = useState(true);
@@ -105,7 +104,6 @@ const WorkPage = (props) => {
         }
     `)
 
-
     useEffect(() => {
         const timeout = setTimeout(() => {
             setIsMounted(true);
@@ -127,8 +125,6 @@ const WorkPage = (props) => {
         }
     }, [query])
 
-
-
     const handleCategoryChange = (prevCategory, newCategory) => {
         setAnimateIn(false);
         const timeout = (data[prevCategory] || []).length * 100 + transitionTimer;
@@ -139,8 +135,6 @@ const WorkPage = (props) => {
         }, timeout);
     }
     
-
-
     return (
         <Layout>
             <StyledContainer>
@@ -166,7 +160,7 @@ const WorkPage = (props) => {
                 <StyledContent>
                         {isMounted &&
                             (data[category] || []).map((item, idx, array) => {
-                                const {id, publisher, title, external_link, forthcoming, fields} = item;
+                                const {id, publisher, title, external_link, forthcoming} = item;
 
                                 return (
                                     <div className="work-item" key={id}>
@@ -229,9 +223,5 @@ const WorkPage = (props) => {
         </Layout>
     )
 }
-
-
-
-
 
 export default WorkPage

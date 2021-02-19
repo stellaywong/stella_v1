@@ -2,12 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { srConfig } from '@config'
 import ScrollReveal from 'scrollreveal';
-import Rhymestein from '../../../gifs/rhymestein.gif'
-
 
 
 const StyledFeatured = styled.div`
@@ -53,7 +49,6 @@ const CardGrid = styled.div`
     //     gap: 2rem;
     // }
 `
-
 
 const Card = styled.div`
 	display: flex;
@@ -109,7 +104,6 @@ const Card = styled.div`
 		font-family: var(--font-header);
 	}
 
-
 	@media (min-width: ${({theme}) => theme.structure.tabletS}px) {
 		.card-head-image {
 			padding-top: 75%; /* 1:1 Aspect Ratio */
@@ -162,9 +156,7 @@ const Card = styled.div`
 
 
 
-
 const Featured = (props) => {
-
 	const data = useStaticQuery(graphql`
 		query {
 			allMarkdownRemark (
@@ -265,7 +257,5 @@ const Featured = (props) => {
 			</StyledFeatured>
 	)
 }
-
-
 
 export default Featured
