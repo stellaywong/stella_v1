@@ -1,24 +1,15 @@
 const path = require('path')
 
 
-
 // https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#onCreateNode
 exports.onCreateNode = ({ node, actions }) => {
     const { createNode, createNodeField } = actions
 
-    
     if (node.internal.type === 'MarkdownRemark') {
         const filePath = node.fileAbsolutePath.split("/");
         
         const category = filePath[filePath.length - 2];
         const slug = path.basename(node.fileAbsolutePath, '.md')
-
-        if(node.frontmatter.featuredGifPath) {
-
-        }
-
-
-        console.log(node.frontmatter)
 
         createNodeField({
             node,
@@ -36,34 +27,34 @@ exports.onCreateNode = ({ node, actions }) => {
 
 
 // https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages
-exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions
-    const blogTemplate = path.resolve('./src/templates/poem.js')
+// exports.createPages = async ({ graphql, actions }) => {
+//     const { createPage } = actions
+//     const blogTemplate = path.resolve('./src/templates/poem.js')
 
-    const res = await graphql(`
-        query {
-            allMarkdownRemark {
-                edges {
-                    node {
-                        fields {
-                            slug
-                        }
-                    }
-                }
-            }
-        }
-    `)
+//     const res = await graphql(`
+//         query {
+//             allMarkdownRemark {
+//                 edges {
+//                     node {
+//                         fields {
+//                             slug
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     `)
 
-    res.data.allMarkdownRemark.edges.forEach((edge) => {
-        createPage({
-            component: blogTemplate,
-            path: `/poem/${edge.node.fields.slug}`,
-            context: {
-                slug: edge.node.fields.slug,
-            }
-        })
-    })
-}
+//     res.data.allMarkdownRemark.edges.forEach((edge) => {
+//         createPage({
+//             component: blogTemplate,
+//             path: `/poem/${edge.node.fields.slug}`,
+//             context: {
+//                 slug: edge.node.fields.slug,
+//             }
+//         })
+//     })
+// }
 
 
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig

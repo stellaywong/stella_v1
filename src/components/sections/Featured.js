@@ -99,8 +99,12 @@ const Card = styled.div`
 	a {
 		font-size: 1.5rem;
 		margin-bottom: 0.5rem;
+		text-decoration: none;
 		color: var(--color-coral);
 		font-family: var(--font-header);
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	@media (min-width: ${({theme}) => theme.structure.tabletS}px) {
@@ -132,9 +136,9 @@ const Card = styled.div`
 		.card-content {
 			width: 50%;
 			${({even}) => even ? (
-				"text-align: left; padding-left: 1.5rem;"
+				"text-align: left; padding-left: 1.75rem;"
 			) : ( 
-				"text-align: right; padding-right: 1.5rem;"
+				"text-align: right; padding-right: 1.75rem;"
 			)}
 
 			&:before {
@@ -216,8 +220,7 @@ const Featured = (props) => {
 						const headClassnames = ["card-head"];
 						if(featuredImage) headClassnames.push("card-head-image");
 
-						return (
-								<Card key={id}
+						return (<Card key={id}
 										even={idx % 2 === 0}
 										ref={el => featuredRef.current[idx] = el}>
 									
@@ -249,8 +252,7 @@ const Featured = (props) => {
 										<p>{description}</p>}
 
 									</div>
-								</Card>
-						)
+								</Card>)
 					})}
 				</CardGrid>
 			</StyledFeatured>
