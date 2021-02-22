@@ -77,7 +77,7 @@ const StyledContent = styled.div`
 const WorkPage = (props) => {
     const [isMounted, setIsMounted] = useState(false);
     const [animateIn, setAnimateIn] = useState(true);
-    const [category, setCategory] = useState("poem");
+    const [category, setCategory] = useState("poetry");
     const [data, setData] = useState({});
 
     const query = useStaticQuery(graphql`
