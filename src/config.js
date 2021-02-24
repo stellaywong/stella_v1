@@ -15,11 +15,11 @@ module.exports = {
     ],
     srConfig: (delay = 300) => ({
         delay,
-        distance: '30px',
+        distance: '40px',
         duration: 500,
         easing: 'ease-in',
         // reset: false,
         opacity: 0,
-        viewFactor: 0.35,
+        viewFactor: 0.25,
       }),
 }
