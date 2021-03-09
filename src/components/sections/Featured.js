@@ -102,9 +102,6 @@ const Card = styled.div`
 		text-decoration: none;
 		color: var(--color-coral);
 		font-family: var(--font-header);
-		&:hover {
-			text-decoration: underline;
-		}
 	}
 
 	@media (min-width: ${({theme}) => theme.structure.tabletS}px) {
@@ -152,7 +149,7 @@ const Card = styled.div`
 		}
 
 		a {
-			font-size: 2.5rem;
+			font-size: 2.25rem;
 		}
 	}
 `
@@ -237,14 +234,14 @@ const Featured = (props) => {
 									<div className="card-content">
 										{publisher ? (<>
 											<div>
-												<a href={external_link}>{publisher}</a>
+												<a href={external_link} className="link-effect-underline">{publisher}</a>
 											</div>
 												
 											{title && 
 											<p>{title}</p>}
 										</>) : (<>
 											<div>
-												<a href={external_link}>{title}</a>
+												<a href={external_link} className="link-effect-underline">{title}</a>
 											</div>
 										</>)}
 

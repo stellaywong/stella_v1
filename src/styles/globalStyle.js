@@ -72,6 +72,27 @@ const globalStyle = createGlobalStyle`
         font-size: 1.2rem;
     }
 
+    .link-effect-underline {
+        position: relative;
+        text-decoration: none;
+
+        &:before {
+            position: absolute;
+            content: '';
+            bottom: 0;
+            overflow: hidden;
+            width: 0px;
+            border-bottom: 2px solid var(--color-secondary);
+            transition: width 500ms;
+        }
+
+        &:hover {
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+
     ${TransitionStyle}
 `
 

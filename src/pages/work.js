@@ -52,14 +52,7 @@ const StyledContent = styled.div`
         font-weight: 700;
         font-family: var(--font-sub);
         color: var(--color-secondary);
-        margin-bottom: 0.5rem;
-    }
-
-    a {
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
+        margin-bottom: 0;
     }
 
     p {
@@ -169,7 +162,7 @@ const WorkPage = (props) => {
                                                         timeout={array.length * 100 + transitionTimer}
                                                         in={animateIn}
                                                         appear={true}
-                                                        unmountOnExit
+                                                        unmountOnExitß
                                                         classNames="fade">
                                             <p className="forthcoming">forthcoming</p>
                                         </CSSTransition>}
@@ -182,7 +175,8 @@ const WorkPage = (props) => {
                                                         unmountOnExit
                                                         classNames="fadeleft">
                                             {external_link ? (
-                                                <a href={external_link}
+                                                <a className="link-effect-underline"
+                                                    href={external_link}
                                                     target="_blank"
                                                     rel="noreferrer"
                                                     style={{transitionDelay: `${1 + idx}00ms`}}>
@@ -203,7 +197,8 @@ const WorkPage = (props) => {
                                                         unmountOnExit
                                                         classNames="faderight">
                                             {!publisher && external_link ? (
-                                                <a href={external_link}
+                                                <a className="link-effect-underline"
+                                                    href={external_link}
                                                     target="_blank"
                                                     rel="noreferrer"
                                                     style={{transitionDelay: `${1 + idx}00ms`}}>
