@@ -1,5 +1,5 @@
 ---
-date: "2020-07-25"
+date: "2022-03-01"
 title: "Spooks"
 publisher: "Saturnalia Books"
 forthcoming: true

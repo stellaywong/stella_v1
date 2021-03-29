@@ -5,12 +5,12 @@ module.exports = {
             url: "/",
         },
         {
-            name: "About",
-            url: "/about",
-        },
-        {
             name: "Work",
             url: "/work",
+        },
+        {
+            name: "About",
+            url: "/about",
         }
     ],
     srConfig: (delay = 300) => ({

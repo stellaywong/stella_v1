@@ -100,7 +100,7 @@ const Card = styled.div`
 		font-size: 1.5rem;
 		margin-bottom: 0.5rem;
 		text-decoration: none;
-		color: var(--color-coral);
+		color: var(--color-salmon);
 		font-family: var(--font-header);
 	}
 
@@ -143,7 +143,7 @@ const Card = styled.div`
 				position: absolute;
 				height: 30%;
 				width: 10px;
-				background-color: var(--color-coral);
+				background-color: var(--color-salmon);
 				${({even}) => even ? "left: 0;" : "right: 0;"}
 			}
 		}

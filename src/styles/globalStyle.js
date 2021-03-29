@@ -15,15 +15,15 @@ const globalStyle = createGlobalStyle`
         --color-beige: #f2f3ee;
         --color-black: #010101;
         --color-gray: #5d5d5d;
-        --color-coral: #bc4e5b;
+        --color-salmon: #df3030;
 
         --color-bg: var(--color-beige);
         --color-primary: var(--color-black);
-        --color-secondary: var(--color-coral);
+        --color-secondary: var(--color-salmon);
 
-        --font-text: 'Roboto', serif;
+        --font-text: 'Lato', serif;
         --font-header: 'Lato', serif;
-        --font-sub: 'Dancing Script', serif;
+        --font-sub: 'Lato', serif;
     }
 
 
