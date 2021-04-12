@@ -2,13 +2,25 @@ import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { Layout } from '@components'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { transitionTimer } from '@utils/util'
 
 
 const StyledContainer = styled.div`
-    padding: 5rem 0;
-    min-height: 100vh;
+  padding: 5rem 0;
+  min-height: 100vh;
+`
+
+const StyledGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+`
+
+const StyledPoem = styled.div`
+  width: 300px;
+  height: 300px;
 
 `
 
@@ -73,6 +85,28 @@ const WorkPage = (props) => {
     const [category, setCategory] = useState("poetry");
     const [data, setData] = useState({});
 
+    // const query = useStaticQuery(graphql`
+    // query {
+    //   markdownRemark(frontmatter: {
+    //     title:{
+    //       eq:"American Zero"
+    //     }
+    //   }) {
+    //     frontmatter {
+    //       title 
+    //       featuredImage {
+    //         childImageSharp {
+    //           fluid(maxWidth: 800, quality: 80) {
+    //             ...GatsbyImageSharpFluid
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    
+    // `)
+
     const query = useStaticQuery(graphql`
       query {
         allMarkdownRemark(
@@ -83,7 +117,7 @@ const WorkPage = (props) => {
           filter: {
             fields: {
               category: {
-                eq: "poem"
+                eq: "poems"
               }
             }
           }
@@ -98,7 +132,7 @@ const WorkPage = (props) => {
                 forthcoming
                 featuredImage {
                   childImageSharp {
-                    fluid(maxWidth: 800, quality: 80) {
+                    fluid(maxWidth: 800, quality: 70) {
                       ...GatsbyImageSharpFluid
                     }
                   }
@@ -109,11 +143,28 @@ const WorkPage = (props) => {
         }
       }`)
 
+
       console.log(query);
     
     return (
         <Layout>
+          <StyledContainer>
             Test
+            <StyledGrid>
+              {query.allMarkdownRemark.edges.map((edge, i) => {
+                const { id } = edge.node;
+                const { title, publisher, external_link, featuredImage } = edge.node.frontmatter;
+                return (
+                  <StyledPoem>
+                    {title}
+                    {featuredImage &&
+                    <Img fluid={featuredImage.childImageSharp.fluid} />}
+                  </StyledPoem>
+                )
+              })}
+            </StyledGrid>
+
+          </StyledContainer>
         </Layout>
     )
 }
