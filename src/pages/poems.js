@@ -127,6 +127,7 @@ const WorkPage = (props) => {
               id
               frontmatter {
                 title
+                poems
                 publisher
                 external_link
                 forthcoming
