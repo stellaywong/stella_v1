@@ -86,7 +86,6 @@ const WorkPage = (props) => {
                             title
                             publisher
                             external_link
-                            forthcoming
                         }
                         fields {
                             category

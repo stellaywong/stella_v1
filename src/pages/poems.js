@@ -126,11 +126,9 @@ const WorkPage = (props) => {
             node {
               id
               frontmatter {
-                title
                 poems
                 publisher
                 external_link
-                forthcoming
                 featuredImage {
                   childImageSharp {
                     fluid(maxWidth: 800, quality: 70) {

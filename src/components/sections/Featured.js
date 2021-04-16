@@ -176,7 +176,6 @@ const Featured = (props) => {
 				node {
 					id
 					frontmatter {
-						title
 						publisher
 						description
 						external_link
