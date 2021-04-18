@@ -4,6 +4,7 @@ import Reset from './reset'
 import Fonts from './fonts'
 import theme from './theme'
 import TransitionStyle from './transitionStyle'
+import BlogStyle from './blogStyle'
 
 
 
@@ -93,6 +94,7 @@ const globalStyle = createGlobalStyle`
         }
     }
 
+    ${BlogStyle}
     ${TransitionStyle}
 `
 

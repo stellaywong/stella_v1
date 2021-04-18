@@ -15,98 +15,41 @@ const StyledContainer = styled.div`
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 20px;
 `
 
 const StyledPoem = styled.div`
-  width: 300px;
-  height: 300px;
+  .gatsby-image-wrapper {
+    height: 300px;
 
+    img {
+      object-position: top !important;
+    }
+  }
+
+  a {
+    display: block;
+    position: relative;
+  }
 `
 
-const StyledCategories = styled.div`
-    text-align: center;
-    margin: 2rem 0;
+const PoemContent = styled.div`
+  padding-top: 10px;
+  text-align: center;
 
-    button {
-        margin: 0.5rem;
-        background-color: transparent;
-        padding: 5px 10px;
-        border: 2px solid var(--color-black);
-        cursor: pointer;
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
 
-        &.category-active,
-        &:hover {
-            color: #f2f2f2;
-            background-color: var(--color-black);
-        }
-    }
+  p {
+    margin: 0;
+    color: #999;
+  }
 `
 
-const StyledDivider = styled.div`
-    height: 2px;
-    width: 20%;
-    margin: 2rem auto;
-    background-color: var(--color-black);
-`
 
-const StyledContent = styled.div`
-    text-align: center;
-
-    .work-item {
-        margin: 2em 0;
-    }
-
-    a,
-    h5 {
-        display: inline-block;
-        font-size: 1.4rem;
-        font-weight: 700;
-        font-family: var(--font-sub);
-        color: var(--color-secondary);
-        margin-bottom: 0;
-    }
-
-    p {
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .forthcoming {
-        font-size: 0.75rem;
-        font-style: italic;
-        color: var(--color-gray);
-    }
-`
-
-const WorkPage = (props) => {
-    const [isMounted, setIsMounted] = useState(false);
-    const [animateIn, setAnimateIn] = useState(true);
-    const [category, setCategory] = useState("poetry");
-    const [data, setData] = useState({});
-
-    // const query = useStaticQuery(graphql`
-    // query {
-    //   markdownRemark(frontmatter: {
-    //     title:{
-    //       eq:"American Zero"
-    //     }
-    //   }) {
-    //     frontmatter {
-    //       title 
-    //       featuredImage {
-    //         childImageSharp {
-    //           fluid(maxWidth: 800, quality: 80) {
-    //             ...GatsbyImageSharpFluid
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    
-    // `)
-
+const Poems = (props) => {
     const query = useStaticQuery(graphql`
       query {
         allMarkdownRemark(
@@ -126,9 +69,10 @@ const WorkPage = (props) => {
             node {
               id
               frontmatter {
-                poems
                 publisher
                 external_link
+                award
+                poems
                 featuredImage {
                   childImageSharp {
                     fluid(maxWidth: 800, quality: 70) {
@@ -141,31 +85,31 @@ const WorkPage = (props) => {
           }
         }
       }`)
-
-
-      console.log(query);
     
     return (
         <Layout>
           <StyledContainer>
-            Test
             <StyledGrid>
               {query.allMarkdownRemark.edges.map((edge, i) => {
                 const { id } = edge.node;
-                const { title, publisher, external_link, featuredImage } = edge.node.frontmatter;
+                const { publisher, featuredImage, external_link, award, poems } = edge.node.frontmatter;
                 return (
                   <StyledPoem>
-                    {title}
                     {featuredImage &&
-                    <Img fluid={featuredImage.childImageSharp.fluid} />}
+                    <a key={id} target="_blank" href={external_link}>
+                      {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
+                      <Img fluid={featuredImage.childImageSharp.fluid} /></a>}
+                    <PoemContent>
+                      <h3>{publisher}</h3>
+                      {poems && poems.map((poem, idx) => <p key={id + "-poem-" + idx}>{poem}</p>)}
+                    </PoemContent>
                   </StyledPoem>
                 )
               })}
             </StyledGrid>
-
           </StyledContainer>
         </Layout>
     )
 }
 
-export default WorkPage
+export default Poems
