@@ -33,7 +33,7 @@ const StyledPoem = styled.div`
   }
 `
 
-const PoemContent = styled.div`
+const StyledPoemContent = styled.div`
   padding-top: 10px;
   text-align: center;
 
@@ -99,10 +99,10 @@ const Poems = (props) => {
                     <a key={id} target="_blank" href={external_link}>
                       {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
                       <Img fluid={featuredImage.childImageSharp.fluid} /></a>}
-                    <PoemContent>
+                    <StyledPoemContent>
                       <h3>{publisher}</h3>
                       {poems && poems.map((poem, idx) => <p key={id + "-poem-" + idx}>{poem}</p>)}
-                    </PoemContent>
+                    </StyledPoemContent>
                   </StyledPoem>
                 )
               })}
