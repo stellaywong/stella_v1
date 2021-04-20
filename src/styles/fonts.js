@@ -5,6 +5,8 @@ import LatoBoldTTF from '@fonts/lato-bold.ttf';
 import LatoRegularTTF from '@fonts/lato-regular.ttf';
 import RobotoRegularTTF from '@fonts/roboto-regular.ttf';
 import RobotoBoldTTF from '@fonts/roboto-bold.ttf';
+import CormorantGaramondRegularTTF from '@fonts/CormorantGaramond-Regular.ttf';
+import CormorantGaramondLightTTF from '@fonts/CormorantGaramond-Light.ttf';
 
 const dancingStriptFont = {
     family: 'Dancing Script',
@@ -29,6 +31,14 @@ const MontserratFont = {
     }
 }
 
+const CormorantGaramondFont = {
+    family: 'CormorantGaramond',
+    normal: {
+        400: [CormorantGaramondLightTTF],
+        700: [CormorantGaramondRegularTTF],
+    }
+}
+
 const createFontFace = (font, style='normal') => {
     let fontFace = '';
 
@@ -50,6 +60,7 @@ const fonts = css`
     ${createFontFace(dancingStriptFont)}
     ${createFontFace(LatoFont)}
     ${createFontFace(MontserratFont)}
+    ${createFontFace(CormorantGaramondFont)}
 `;
 
 
