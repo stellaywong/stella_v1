@@ -75,7 +75,7 @@ const Poems = (props) => {
                 poems
                 featuredImage {
                   childImageSharp {
-                    fluid(maxWidth: 800, quality: 70) {
+                    fluid(maxWidth: 800, quality: 60) {
                       ...GatsbyImageSharpFluid
                     }
                   }
