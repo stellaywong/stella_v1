@@ -19,17 +19,27 @@ const StyledGrid = styled.div`
 `
 
 const StyledPoem = styled.div`
-  .gatsby-image-wrapper {
-    height: 300px;
-
-    img {
-      object-position: top !important;
-    }
-  }
+  position: relative;
 
   a {
     display: block;
     position: relative;
+    overflow: hidden;
+    
+    .gatsby-image-wrapper {
+      height: 400px;
+      transition: transform 200ms ease-in;
+  
+      img {
+        object-position: top !important;
+      }
+    }
+
+    &:hover {
+      .gatsby-image-wrapper {
+        transform: scale(1.05);
+      }
+    }
   }
 `
 
@@ -95,10 +105,10 @@ const Poems = (props) => {
                 const { publisher, featuredImage, external_link, award, poems } = edge.node.frontmatter;
                 return (
                   <StyledPoem>
-                    {featuredImage &&
+                    {featuredImage && <>
+                    {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
                     <a key={id} target="_blank" href={external_link}>
-                      {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
-                      <Img fluid={featuredImage.childImageSharp.fluid} /></a>}
+                      <Img fluid={featuredImage.childImageSharp.fluid} /></a></>}
                     <StyledPoemContent>
                       <h3>{publisher}</h3>
                       {poems && poems.map((poem, idx) => <p key={id + "-poem-" + idx}>{poem}</p>)}

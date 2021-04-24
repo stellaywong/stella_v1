@@ -5,7 +5,7 @@ const transitionStyle = css`
     position: absolute;
     width: 150px;
     height: 150px;
-    font-size: 10px;
+    font-size: 12px;
     overflow: hidden;
     z-index: 1;
 
