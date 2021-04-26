@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Layout, Hero, Featured } from '@components'
+import { Layout, Hero, Featured, Blurbs } from '@components'
 import styled from 'styled-components'
 
 
@@ -20,6 +20,7 @@ const IndexPage = (props) => {
 
       <Hero />
       <Featured />
+      <Blurbs />
     </Layout>
   )
 }
