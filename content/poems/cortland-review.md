@@ -1,6 +1,7 @@
 ---
 date: "2019-08-01"
 publisher: Cortland Review
+featured: true
 featuredImage: ../../images/cortland-review-cover.jpg
 external_link: https://archive.cortlandreview.com/issue/83/wong.php
 poems: 
