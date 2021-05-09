@@ -22,9 +22,9 @@ const globalStyle = createGlobalStyle`
         --color-primary: var(--color-black);
         --color-secondary: var(--color-salmon);
 
-        --font-text: 'CormorantGaramond', serif;
-        --font-header: 'CormorantGaramond', serif;
-        --font-sub: 'CormorantGaramond', serif;
+        --font-text: 'Cormorant Garamond', serif;
+        --font-header: 'Cormorant Garamond', serif;
+        --font-sub: 'Cormorant Garamond', serif;
     }
 
 

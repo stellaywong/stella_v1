@@ -4,29 +4,41 @@ import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 import { srConfig } from '@config'
 import ScrollReveal from 'scrollreveal';
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { transitionTimer } from '@utils/util'
 
 
 
-
-
-const SectionFeatured = styled.div`
+const SectionFeatured = styled.section`
   height: 100vh;
+  overflow:hidden;
 `
 
 const HighlightContainer = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 0.5fr;
   justify-content: center;
   align-items: center;
-  width: 1800px;
+  width: 1500px;
   height: 100%;
   margin: 0 auto;
 `
 
 const HighlightTitles = styled.div`
   position: relative;
-  width: 50%;
+  
+  .featured-in {
+    display: inline-block;
+    font-weight: 600;
+    color: white;
+    background: black;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
 `
 
 const HighlightCards = styled.div`
@@ -41,26 +53,13 @@ const HighlightCards = styled.div`
 
 const CardImage = styled.div`
   position: absolute;
-  transform: ${p => p.idx < p.activeIdx ? "translateX(100vw)" : null};
-  transition: ${p => {
-    // animate in
-    if (p.activeIdx === 0) {
-      return `transform ${(p.size - p.idx + 1) * 100}ms ease-in;`
-    } else {
-      return `transform 300ms ease-in;`
-    }
-  }}
-  
-  
-  transform ${p => (p.idx + 1) * 300}ms ease-in;
+
   z-index: ${p => p.size - p.idx};
 
   .card-rotate {
     position: relative;  
-    width: 400px;
-    padding: 10px;
+    width: 450px;
     box-shadow: rgb(0 0 0 / 0%) 2px 5px 27px;
-    background: ${p => p.activeIdx === p.idx ? "#ffeeee" : null};
     transition: background 200ms ease-in, transform 200ms ease-in;
     ${p => {
       const index = p.idx - p.activeIdx;
@@ -276,13 +275,41 @@ const Featured = (props) => {
         }
       }`)
   const [activeIdx, setActiveIdx] = useState(0);
+  const [animateIn, setAnimateIn] = useState([]);
 
-	const titleRef = useRef(null);
-	const featuredRef = useRef([]);
+  const assignAnimateOut = () => {
+    const animateIn = [...animateIn];
+    animateIn[activeIdx] = false;
+    setAnimateIn(animateIn);
+  }
+
+  const assignAnimateIn = (idx=0) => {
+    const animateIn = [...animateIn];
+    animateIn[idx] = true;
+    setAnimateIn(animateIn);
+  }
+
+  const incrementActiveIdx = () => {
+    const { edges } = data.allMarkdownRemark;
+    const newActiveIdx = (activeIdx + 1) % edges.length;
+    assignAnimateIn(newActiveIdx);
+    setActiveIdx(newActiveIdx);
+  }
+
+  useEffect(() => {
+    const { edges } = data.allMarkdownRemark;
+    const animateIn = Array.from(edges, () => false);
+    animateIn[0] = true;
+    setAnimateIn(animateIn);
+  }, [])
 
 	useEffect(() => {
     const { edges } = data.allMarkdownRemark;
-    setTimeout(() => setActiveIdx((activeIdx + 1) % edges.length), 3000);
+    setTimeout(() => {
+      assignAnimateOut();
+      setTimeout(incrementActiveIdx, transitionTimer);
+    }, 5000);
+    // setTimeout(() => setActiveIdx((activeIdx + 1) % edges.length), 3000);
 
 		// ScrollReveal().reveal(titleRef.current, srConfig());
 		// featuredRef.current.forEach((ref, i) => ScrollReveal().reveal(ref, srConfig((i + 1) * 300)));
@@ -294,30 +321,50 @@ const Featured = (props) => {
     <SectionFeatured>
       <HighlightContainer>
         <HighlightTitles>
-          {data.allMarkdownRemark.edges.map((edge, idx) => {
-            const { id, frontmatter } = edge.node;
-            const { publisher } = frontmatter; 
-            return <h1>{publisher}</h1>
-          })}
+            <span className="featured-in">Featured In</span>
+            {data.allMarkdownRemark.edges.map((edge, idx) => {
+              const { id, frontmatter } = edge.node;
+              const { publisher } = frontmatter; 
+              const animate = animateIn[idx];
+
+              return <CSSTransition key={id + "-title"}
+                                    in={animate}
+                                    appear={true}
+                                    classNames="fade"
+                                    timeout={transitionTimer} 
+                                    mountOnEnter
+                                    unmountOnExit>
+                                      <h1>{publisher}</h1>
+              </CSSTransition>
+            })}
         </HighlightTitles>
 
         <HighlightCards>
+          {/* <TransitionGroup component={null}> */}
           {data.allMarkdownRemark.edges.map((edge, idx, arr) => {
             const { id, frontmatter } = edge.node;
             const { featuredImage } = frontmatter; 
 
-            const animateOut = activeIdx < idx;
+            const show = activeIdx <= idx;
             const isActive = activeIdx === idx;
 
             
             return (
-                <CardImage idx={idx} activeIdx={activeIdx} size={arr.length} animateOut={animateOut}>
-                  <div className="card-rotate">
-                    <Img fluid={featuredImage.childImageSharp.fluid} />
-                  </div>
-                </CardImage>
+                <CSSTransition key={id + "-image"}
+                               in={show}
+                               appear={true}
+                               classNames="slideBigRight"
+                               timeout={arr.length * transitionTimer + 100}
+                               unmountOnExit>
+                  <CardImage idx={idx} activeIdx={activeIdx} size={arr.length} style={{ transitionDelay: show ? `${idx + 1}00ms` : null }}>
+                    <div className="card-rotate">
+                      <Img fluid={featuredImage.childImageSharp.fluid} />
+                    </div>
+                  </CardImage>
+                </CSSTransition>
             )
           })}
+          {/* </TransitionGroup> */}
         </HighlightCards>
 
       </HighlightContainer>

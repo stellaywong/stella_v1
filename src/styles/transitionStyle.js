@@ -4,6 +4,26 @@ import { transitionTimer } from '@utils/util'
 // https://reactcommunity.org/react-transition-group/css-transition
 
 const transitionStyle = css`
+  .slideBigRight-appear,
+  .slideBigRight-enter {
+    transform: translateX(100vw);
+    transition: transform ${transitionTimer}ms ease-in;
+  }
+  .slideBigRight-appear-active,
+  .slideBigRight-enter-active {
+    transform: translateX(0px);
+    transition: transform ${transitionTimer}ms ease-in;
+  }
+  .slideBigRight-exit {
+    transform: translateX(0px);
+    transition: transform ${transitionTimer}ms ease-in;
+  }
+  .slideBigRight-exit-active {
+    transform: translateX(100vw);
+    transition: transform ${transitionTimer}ms ease-in;
+  }
+
+
   /* Fade up */
   .fadeup-appear,
   .fadeup-enter {
@@ -86,7 +106,9 @@ const transitionStyle = css`
     opacity: 0;
   }
   .fade-appear-active,
-  .fade-enter-active {
+  .fade-appear-done,
+  .fade-enter-active,
+  .fade-enter-done {
     opacity: 1;
     transition: opacity ${transitionTimer}ms ease-in;
   }

@@ -16,9 +16,9 @@ const IndexPage = (props) => {
   }, [])
 
   return (
-    <div>
+    <Layout>
       <Featured />
-    </div>
+    </Layout>
   )
 }
 

@@ -7,14 +7,14 @@ import styled from 'styled-components'
 
 const StyledMain = styled.main`
     width: 100%;
-    max-width: ${theme.container.large}px;
+    // max-width: ${theme.container.large}px;
     min-height: 100vh;
-    margin: 0 auto;
-    padding: 0 2rem;
+    // margin: 0 auto;
+    // padding: 0 2rem;
 
-    @media (min-width: ${theme.structure.desktopS}px) {
-        padding: 0 150px;
-    }
+    // @media (min-width: ${theme.structure.desktopS}px) {
+    //     padding: 0 150px;
+    // }
 `
 
 
