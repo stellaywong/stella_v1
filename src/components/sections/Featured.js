@@ -10,9 +10,10 @@ import { transitionTimer } from '@utils/util'
 
 
 const SectionFeatured = styled.section`
-  height: 100vh;
+  ${p => p.theme.mixins.clearfix}
+  min-height: 100vh;
+  position: relative;
   background: #fdf0e6;
-  padding-top: 5rem;
   overflow: hidden;
 `
 
@@ -22,7 +23,6 @@ const HighlightContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 1500px;
-  height: 100%;
   margin: 0 auto;
 `
 
@@ -38,8 +38,13 @@ const HighlightTitles = styled.div`
     margin-bottom: 10px;
   }
 
-  h1 {
-    font-size: 3rem;
+  h3 {
+    color: #666;
+    transition: color ${transitionTimer}ms ease-in;
+
+    &.active {
+      color: #000;
+    }
   }
 `
 
@@ -49,7 +54,6 @@ const HighlightCards = styled.div`
   align-items: center;
   position: relative;
   overflow:hidden;
-  padding: 5rem;
 `
 
 const CardImage = styled.div`
@@ -118,8 +122,8 @@ const Featured = (props) => {
       setAnimateIn(false);
       setTimeout(() => {
         setActiveIdx((currentIdx + 1) % data.allMarkdownRemark.edges.length);
-      }, transitionTimer);
-    }, 2000);
+      }, transitionTimer+500);
+    }, 3500);
 	}, [activeIdx]);
 
 
@@ -152,15 +156,7 @@ const Featured = (props) => {
               const { publisher } = frontmatter; 
               const isActive = activeIdx === idx;
 
-              return <CSSTransition key={id + "-title"}
-                                    in={isActive && animateIn}
-                                    appear={true}
-                                    classNames="fade"
-                                    timeout={transitionTimer} 
-                                    mountOnEnter
-                                    unmountOnExit>
-                                      <h1>{publisher}</h1>
-                     </CSSTransition>
+              return <h3 className={isActive ? "active" : null}>{publisher}</h3>
             })}
         </HighlightTitles>
       </HighlightContainer>

@@ -7,39 +7,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 import ScrollReveal from 'scrollreveal';
 
- const StyledBlurbs = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ const SectionBlurbs = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background: #f2f2f2;
  `
 
- const StyledContainer = styled.div`
-    display: flex;
+ const BlurbContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
  `
 
- const BlurbItem = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+ const BlurbText = styled.div`
+    
  `
 
- const BlurbIcon = styled.div`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    veritical-align: middle;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 50px;
-
-    &:after {
-      content: '';
-      float:left;
-      width: auto;
-      padding-bottom: 100%;
-    }
+ const CiteContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
  `
 
+ const CiteProfile = styled.div`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow:hidden;
+ `
 
 
 
@@ -61,6 +59,13 @@ const Blurbs = (props) => {
             html
             frontmatter {
               author
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 500, quality: 80) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
         }
@@ -68,23 +73,35 @@ const Blurbs = (props) => {
     }
 	`)
 
-
-    console.log(data)
 	return (
-			<StyledBlurbs>
-        <StyledContainer>
-          {data.allMarkdownRemark.edges.map(edge => {
+			<SectionBlurbs>
+
+        <BlurbContainer>
+          {data.allMarkdownRemark.edges.map((edge, idx) => {
             const {id, html, frontmatter} = edge.node;
-            return <BlurbItem key={id}>
-              <BlurbIcon>
+            const { image } = frontmatter;
+            if (idx !== 0) return null;
+            return <BlurbText key={id}>
+              {/* <BlurbIcon>
                 <FontAwesomeIcon icon={faQuoteRight} />
-              </BlurbIcon>
+              </BlurbIcon> */}
               <div dangerouslySetInnerHTML={{ __html: html }} />
-            </BlurbItem>
-            
+            </BlurbText>
           })}
-        </StyledContainer>
-      </StyledBlurbs>
+        </BlurbContainer>
+        <CiteContainer>
+          {data.allMarkdownRemark.edges.map((edge, idx) => {
+            const {id, html, frontmatter} = edge.node;
+            const { image } = frontmatter;
+
+            return <CiteProfile key={id}>
+               <Img style={{ height: "100%", width: "100%" }}
+                            imgStyle={{ objectFit: "contain" }}
+                            fluid={image.childImageSharp.fluid} />
+            </CiteProfile>
+          })}
+        </CiteContainer>
+      </SectionBlurbs>
 	)
 }
 

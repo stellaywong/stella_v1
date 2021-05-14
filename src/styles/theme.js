@@ -1,3 +1,4 @@
+import mixins from './mixins'
 
 const theme = {
     structure: {
@@ -12,7 +13,9 @@ const theme = {
 
     container: {
         large: 1400,
-    }
+    },
+
+    mixins,
 }
 
 

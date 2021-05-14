@@ -1,5 +1,6 @@
 export { default as Fonts } from './fonts'
 export { default as GlobalStyle } from './globalStyle'
+export { default as Mixins } from './mixins'
 export { default as Reset } from './reset'
 export { default as theme } from './theme'
 export { default as BlogStyle } from './blogStyle'
