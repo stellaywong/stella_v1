@@ -10,33 +10,36 @@ import { transitionTimer } from '@utils/util'
 
 
 const SectionFeatured = styled.section`
-  ${p => p.theme.mixins.clearfix}
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
+  min-height: 750px;
+  height: 100vh;
   background: #fdf0e6;
+  padding: 2.5rem 0;
   overflow: hidden;
+  box-sizing: border-box;
+`
+
+const Header = styled.h1`
+  text-align: center;
 `
 
 const HighlightContainer = styled.div`
   display: grid;
+  flex: 1;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
   justify-content: center;
   align-items: center;
   width: 1500px;
   margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
 `
 
 const HighlightTitles = styled.div`
   position: relative;
-  
-  .featured-in {
-    display: inline-block;
-    font-weight: 600;
-    color: white;
-    background: black;
-    padding: 5px 10px;
-    margin-bottom: 10px;
-  }
 
   h3 {
     color: #666;
@@ -48,23 +51,18 @@ const HighlightTitles = styled.div`
   }
 `
 
-const HighlightCards = styled.div`
+const HighlightCovers = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  overflow:hidden;
+  height: 100%;
+  overflow: hidden;
 `
 
-const CardImage = styled.div`
+const CoverImage = styled.div`
   width: 450px;
-  height: 500px;
-  overflow: hidden;
-  
-  .gatsby-image-wrapper {
-    width: 100%;
-    height: 100%;
-  }
+  height: 600px;
+  position: relative;
 `
 
 const Featured = (props) => {
@@ -122,15 +120,16 @@ const Featured = (props) => {
       setAnimateIn(false);
       setTimeout(() => {
         setActiveIdx((currentIdx + 1) % data.allMarkdownRemark.edges.length);
-      }, transitionTimer+500);
-    }, 3500);
+      }, transitionTimer);
+    }, 3000);
 	}, [activeIdx]);
 
 
 	return (
     <SectionFeatured>
+      <Header>Featured In</Header>
       <HighlightContainer>
-        <HighlightCards>
+        <HighlightCovers>
           {data.allMarkdownRemark.edges.map((edge, idx, arr) => {
             const { id, frontmatter } = edge.node;
             const { featuredImage } = frontmatter; 
@@ -142,14 +141,14 @@ const Featured = (props) => {
                                classNames="fadeleft"
                                timeout={transitionTimer}
                                unmountOnExit>
-                    <CardImage idx={idx} activeIdx={activeIdx} size={arr.length}>
+                    <CoverImage>
                         <Img style={{ height: "100%", width: "100%" }}
                             imgStyle={{ objectFit: "contain" }}
                             fluid={featuredImage.childImageSharp.fluid} />
-                    </CardImage>
+                    </CoverImage>
                   </CSSTransition>
           })}
-        </HighlightCards>
+        </HighlightCovers>
         <HighlightTitles>
             {data.allMarkdownRemark.edges.map((edge, idx) => {
               const { id, frontmatter } = edge.node;
