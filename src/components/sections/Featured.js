@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import { srConfig } from '@config'
 import ScrollReveal from 'scrollreveal';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { transitionTimer } from '@utils/util'
+import { transition } from '@utils/util'
 
 
 
@@ -43,7 +43,7 @@ const HighlightTitles = styled.div`
 
   h3 {
     color: #666;
-    transition: color ${transitionTimer}ms ease-in;
+    transition: color ${transition.normal}ms ease-in;
 
     &.active {
       color: #000;
@@ -120,10 +120,9 @@ const Featured = (props) => {
       setAnimateIn(false);
       setTimeout(() => {
         setActiveIdx((currentIdx + 1) % data.allMarkdownRemark.edges.length);
-      }, transitionTimer);
+      }, transition.normal);
     }, 3000);
 	}, [activeIdx]);
-
 
 	return (
     <SectionFeatured>
@@ -136,15 +135,15 @@ const Featured = (props) => {
             const isActive = activeIdx === idx;
             
             return <CSSTransition key={id + "-image"}
-                               in={isActive && animateIn}
-                               appear={true}
-                               classNames="fadeleft"
-                               timeout={transitionTimer}
-                               unmountOnExit>
+                                  in={isActive && animateIn}
+                                  appear={true}
+                                  classNames="fadeleft"
+                                  timeout={transition.normal}
+                                  unmountOnExit>
                     <CoverImage>
                         <Img style={{ height: "100%", width: "100%" }}
-                            imgStyle={{ objectFit: "contain" }}
-                            fluid={featuredImage.childImageSharp.fluid} />
+                             imgStyle={{ objectFit: "contain" }}
+                             fluid={featuredImage.childImageSharp.fluid} />
                     </CoverImage>
                   </CSSTransition>
           })}

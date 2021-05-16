@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { transitionTimer } from '@utils/util'
+import { transition } from '@utils/util'
 
 
 const StyledHero = styled.section`
@@ -58,7 +58,7 @@ const Hero = (props) => {
                                     classNames="fadeup" 
                                     in={true}
                                     appear={true}
-                                    timeout={(i + 1) * 100 + transitionTimer}>
+                                    timeout={(i + 1) * 100 + transition.normal}>
                     <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
                     </CSSTransition>
                 ))}
