@@ -33,9 +33,12 @@ import { transition } from '@utils/util'
 
  const BlurbText = styled.div`
   padding: 1rem;
-  border: 1px solid;
+  border: 1px solid white;
   border-radius: 10px;
   position: relative;
+  background: #f7f7fa;
+  // box-shadow: inset -2px -2px 3px hsl(0deg 0% 0% / 20%), inset 2px 2px 4px hsl(0deg 0% 20%);
+  box-shadow: inset -2px -2px 3px hsl(0deg 0% 70%), inset 2px 2px 4px hsl(0deg 0% 20%);
 
   blockquote {
     padding: 1rem;
@@ -53,9 +56,10 @@ import { transition } from '@utils/util'
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;
-  border: 1px solid black;
   border-radius: 50px;
-  background: #f2f2f2;
+  background: #f7f7fa;
+  box-shadow: 2px 2px 4px hsl(0deg 0% 20%);
+
 
   &:after {
     content: '';
@@ -157,7 +161,7 @@ const Blurbs = (props) => {
 
             return <CSSTransition key={id + "-blurb"}
                                       in={isActive && animateIn}
-                                      classNames="fadeup"
+                                      classNames="fade"
                                       timeout={transition.normal}
                                       unmountOnExit>
                       <BlurbText>

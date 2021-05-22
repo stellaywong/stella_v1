@@ -19,11 +19,19 @@ module.exports = {
     ],
     srConfig: (delay = 300) => ({
         delay,
-        distance: '40px',
         duration: 500,
         easing: 'ease-in',
         // reset: false,
         opacity: 0,
         viewFactor: 0.25,
       }),
+    srRight: (delay = 300) => ({
+      delay,
+      duration: 500,
+      distance: '50px',
+      easing: 'ease-in',
+      opacity: 0,
+      origin: 'left',
+      viewFactor: 0.25,
+    })
 }

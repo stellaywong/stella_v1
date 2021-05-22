@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
-import { srConfig } from '@config'
+import { srConfig, srRight } from '@config'
 import ScrollReveal from 'scrollreveal';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { transition } from '@utils/util'
@@ -11,18 +11,23 @@ import { transition } from '@utils/util'
 
 const SectionFeatured = styled.section`
   display: flex;
+  ${p => p.theme.mixins.fullWidth};
   flex-direction: column;
   position: relative;
-  min-height: 750px;
-  height: 100vh;
+  min-height: 100vh;
+  // height: 100vh;
   background: #fdf0e6;
-  padding: 2.5rem 0;
+  padding: 2rem 0;
   overflow: hidden;
   box-sizing: border-box;
 `
 
 const Header = styled.h1`
-  text-align: center;
+  text-align: right;
+  font-size: clamp(2rem, 2.5vw, 5rem);
+  padding: 1rem 3rem;
+  font-family: 'Lato';
+  background: linear-gradient(to right, transparent 50%, #fffdd4);
 `
 
 const HighlightContainer = styled.div`
@@ -32,7 +37,7 @@ const HighlightContainer = styled.div`
   grid-template-rows: 100%;
   justify-content: center;
   align-items: center;
-  width: 1500px;
+  width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
@@ -40,6 +45,7 @@ const HighlightContainer = styled.div`
 
 const HighlightTitles = styled.div`
   position: relative;
+  text-align: center;
 
   h3 {
     color: #666;
@@ -61,7 +67,7 @@ const HighlightCovers = styled.div`
 
 const CoverImage = styled.div`
   width: 450px;
-  height: 600px;
+  // height: 600px;
   position: relative;
 `
 
@@ -109,6 +115,7 @@ const Featured = (props) => {
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [animateIn, setAnimateIn] = useState(true);
+  const titleRef = useRef(null);
 
 	useEffect(() => {
     const { edges } = data.allMarkdownRemark;
@@ -124,9 +131,16 @@ const Featured = (props) => {
     }, 3000);
 	}, [activeIdx]);
 
+  useEffect(() => {
+    ScrollReveal().reveal(titleRef.current, srRight());
+  }, []);
+
+
 	return (
     <SectionFeatured>
-      <Header>Featured In</Header>
+      <Header ref={titleRef}>
+        Featured In
+      </Header>
       <HighlightContainer>
         <HighlightCovers>
           {data.allMarkdownRemark.edges.map((edge, idx, arr) => {

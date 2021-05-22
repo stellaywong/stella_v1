@@ -13,6 +13,7 @@ const theme = {
 
     container: {
         large: 1400,
+        xlarge: 2000,
     },
 
     mixins,
