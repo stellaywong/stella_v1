@@ -25,6 +25,8 @@ const globalStyle = createGlobalStyle`
         --font-text: 'Cormorant Garamond', serif;
         --font-header: 'Cormorant Garamond', serif;
         --font-sub: 'Cormorant Garamond', serif;
+
+        --nav-height: 80px;
     }
 
 

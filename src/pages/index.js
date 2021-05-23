@@ -1,12 +1,5 @@
 import React, { useEffect } from "react"
 import { Layout, Hero, Featured, Blurbs } from '@components'
-import styled from 'styled-components'
-
-
-const StyledIndex = styled.div`
-  display: flex;
-
-`
 
 
 const IndexPage = (props) => {

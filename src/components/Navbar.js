@@ -1,42 +1,58 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { navLinks } from '@config'
-// import { useScrollDirection } from '@hooks'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
-const StyledContainer = styled.nav`
+const StyledNavbar = styled.nav`
   display: flex;
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
+  height: var(--nav-height);
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
   background-color: var(--color-bg);
   z-index: 10;
-  
-  @media (min-width: ${({theme}) => theme.structure.tabletS}px) {
-      padding: 1rem 3rem;
-  }
 `
 
-const StyledNavbar = styled.ul`
+const StyledContainer = styled.div`
   display: flex;
-  margin: 0;
-  list-style: none;
-`
-
-const StyledNavItem = styled.li`
-  position: relative;
-  backface-visibility: hidden;
-  margin: 0 5px;
-  padding: 10px;
+  flex-direction: column;
+  align-items: center;
 
   a {
     color: inherit;
     text-decoration: none;
     letter-spacing: 1px;
+    &:hover {
+      color: var(--color-secondary);
+    }
+  }
+`
+
+const StyledNavHome = styled.div`
+  margin: 5px auto;
+
+  a {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+`
+
+const StyledNavItems = styled.ul`
+  display: flex;
+  margin: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    backface-visibility: hidden;
+    margin: 0 5px;
+    padding: 5px;
+  
+
   }
 `
 
@@ -64,23 +80,36 @@ const Navbar = (props) => {
 
 
     return (
-        <StyledContainer>
-            <StyledNavbar>
+        <StyledNavbar>
+            <StyledContainer>
+              {isMounted && (
+                <CSSTransition key="home-link"
+                                in={true}
+                                appear={true}
+                                timeout={2000} 
+                                classNames="fadedown">
+                  <StyledNavHome>
+                    <Link to="/">StellaWong</Link>
+                  </StyledNavHome>
+                </CSSTransition>
+              )}
+              <StyledNavItems>
                 <TransitionGroup component={null}>
                     {isMounted && (
                         navLinks.map(({name, url}, idx) => (
                             <CSSTransition key={idx}
                                             timeout={2000} 
                                             classNames="fadedown">
-                                <StyledNavItem style={{ transitionDelay: `${idx + 1}00ms` }}>
+                                <li style={{ transitionDelay: `${idx + 1}00ms` }}>
                                     <Link to={url}>{name}</Link>
-                                </StyledNavItem>
+                                </li>
                             </CSSTransition>
                         ))
                     )}
                 </TransitionGroup>
-            </StyledNavbar>
-        </StyledContainer>
+              </StyledNavItems>
+            </StyledContainer>
+        </StyledNavbar>
     )
 }
 

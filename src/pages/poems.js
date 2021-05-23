@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { Layout } from '@components'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { transitionTimer } from '@utils/util'
-
 
 const StyledContainer = styled.div`
-  padding: 5rem 0;
+  padding: 2rem 0;
   min-height: 100vh;
 `
 
@@ -107,7 +104,7 @@ const Poems = (props) => {
                   <StyledPoem>
                     {featuredImage && <>
                     {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
-                    <a key={id} target="_blank" href={external_link}>
+                    <a key={id} target="_blank" href={external_link} rel="noreferrer" >
                       <Img fluid={featuredImage.childImageSharp.fluid} /></a></>}
                     <StyledPoemContent>
                       <h3>{publisher}</h3>

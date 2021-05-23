@@ -25,7 +25,7 @@ const Layout = (props) => {
         <div id="root">
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-
+                <Navbar />
                 <StyledMain>
                     {props.children}
                 </StyledMain>

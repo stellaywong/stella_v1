@@ -1,10 +1,6 @@
 module.exports = {
     navLinks: [
         {
-            name: "Home",
-            url: "/",
-        },
-        {
             name: "Books",
             url: "/books",
         },
@@ -17,16 +13,18 @@ module.exports = {
             url: "/projects",
         },
     ],
-    srConfig: (delay = 300) => ({
-        delay,
+    srConfig: (config={}) => ({
+        delay: 300,
         duration: 500,
+        distance: '50px',
         easing: 'ease-in',
         // reset: false,
         opacity: 0,
         viewFactor: 0.25,
+        ...config,
       }),
     srRight: (delay = 300) => ({
-      delay,
+      delay: 300,
       duration: 500,
       distance: '50px',
       easing: 'ease-in',

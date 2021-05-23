@@ -4,31 +4,35 @@ import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 import { srConfig } from '@config'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuoteRight, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import ScrollReveal from 'scrollreveal';
 import { CSSTransition } from 'react-transition-group'
 import { transition } from '@utils/util'
 
  const SectionBlurbs = styled.section`
+  ${p => p.theme.mixins.fullWidth};
+  position: relative;
+  background: #f2f2f2;
+  padding: 2rem 0;
+ `
+
+ const SectionBlurbsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #f2f2f2;
+  position: relative;
   width: 1000px;
-  height: 700px;
-  padding: 5rem 0;
+  height: 600px;
   margin: 0 auto;
-
+  padding: 1rem 0;
  `
 
  const BlurbContainer = styled.div`
-  flex: 1;
   display: flex;
-  width: 100%;
-  position: relative;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  width: 100%;
  `
 
  const BlurbText = styled.div`
@@ -70,11 +74,11 @@ import { transition } from '@utils/util'
 `
 
  const CiteContainer = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
+  position: relative;
   justify-content: space-around;
   align-items: center;
-  position: relative;
   width: 100%;
   overflow: hidden;
  `
@@ -87,16 +91,34 @@ import { transition } from '@utils/util'
   }
  `
 
- const CiteImage = styled.div`
+ const CiteImage = styled.button`
   width: 150px;
   height: 150px;
   border-radius: 50%;
   filter: grayscale(100%);
+  padding: 0;
+  border: none;
+  outline: none;
   overflow:hidden;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    filter: grayscale(0%);
+  }
  `
 
-
-
+ const Header = styled.h1`
+  position: absolute;
+  font-size: clamp(2rem, 2.5vw, 5rem);
+  font-family: 'Lato';
+  padding: 1rem 3rem;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  background: linear-gradient(to left, transparent 60%, #009c87);
+`
 
 
 
@@ -133,65 +155,65 @@ const Blurbs = (props) => {
 	`)
 
   const [activeIdx, setActiveIdx] = useState(0);
-  const [animateIn, setAnimateIn] = useState(true);
+  const [animate, setAnimate] = useState(true);
+  const titleRef = useRef(null);
 
   useEffect(() => {
-    const { edges } = data.allMarkdownRemark;
-    const currentIdx = activeIdx;
+    ScrollReveal().reveal(titleRef.current, srConfig({origin:"right"}));
+  }, []);
 
-    if(!animateIn) setAnimateIn(true);
-
+  const handleChange = (idx) => {
+    const newIdx = idx || idx === 0 ? idx : (activeIdx + 1) % data.allMarkdownRemark.edges.length;
+    setAnimate(false);
     setTimeout(() => {
-      setAnimateIn(false);
-      setTimeout(() => {
-        setActiveIdx((currentIdx + 1) % data.allMarkdownRemark.edges.length);
-      }, transition.normal);
-    }, 7000);
-	}, [activeIdx]);
+      setActiveIdx(newIdx);
+      setAnimate(true);
+    }, transition.normal)
+  }
 
 	return (
 			<SectionBlurbs>
-        
+        <Header ref={titleRef}>
+          Blurbs
+        </Header>
+        <SectionBlurbsWrapper>
+          <BlurbContainer>
+            {data.allMarkdownRemark.edges.map((edge, idx) => {
+              const {id, html} = edge.node;
+              const isActive = activeIdx === idx;
 
-        <BlurbContainer>
-          {data.allMarkdownRemark.edges.map((edge, idx) => {
-            const {id, html, frontmatter} = edge.node;
-            const {author} = frontmatter;
-            const isActive = activeIdx === idx;
+              return <CSSTransition key={id + "-blurb"}
+                                        in={isActive && animate}
+                                        classNames="fade"
+                                        timeout={transition.normal}
+                                        unmountOnExit>
+                        <BlurbText>
+                          <QuoteIcon>
+                            <FontAwesomeIcon icon={faQuoteLeft} />
+                          </QuoteIcon>
+                          <div dangerouslySetInnerHTML={{ __html: html }} />
+                        </BlurbText>
+                    </CSSTransition>
+            })}
+          </BlurbContainer>
 
-            return <CSSTransition key={id + "-blurb"}
-                                      in={isActive && animateIn}
-                                      classNames="fade"
-                                      timeout={transition.normal}
-                                      unmountOnExit>
-                      <BlurbText>
-                        <QuoteIcon>
-                          <FontAwesomeIcon icon={faQuoteLeft} />
-                        </QuoteIcon>
-                        <div dangerouslySetInnerHTML={{ __html: html }} />
-                      </BlurbText>
-                  </CSSTransition>
-          })}
-        </BlurbContainer>
+          <CiteContainer>
+            {data.allMarkdownRemark.edges.map((edge, idx) => {
+              const {id, frontmatter} = edge.node;
+              const { image, author } = frontmatter;
+              const isActive = activeIdx === idx;
 
-        <CiteContainer>
-          {data.allMarkdownRemark.edges.map((edge, idx) => {
-            const {id, html, frontmatter} = edge.node;
-            const { image, author } = frontmatter;
-
-            const isActive = activeIdx === idx;
-
-            return <CiteProfile key={id} >
-                <CiteImage style={{filter: isActive ? "grayscale(0%)" : null}}>
-                  <Img style={{ height: "100%", width: "100%" }}
-                                imgStyle={{ objectFit: "contain" }}
-                                fluid={image.childImageSharp.fluid} />
-                </CiteImage>
-                <p>{author}</p>
-            </CiteProfile>
-          })}
-        </CiteContainer>
-        
+              return <CiteProfile key={id} >
+                  <CiteImage className={isActive ? "active" : null} onClick={() => handleChange(idx)}>
+                    <Img style={{ height: "100%", width: "100%" }}
+                                  imgStyle={{ objectFit: "contain" }}
+                                  fluid={image.childImageSharp.fluid} />
+                  </CiteImage>
+                  <p>{author}</p>
+              </CiteProfile>
+            })}
+          </CiteContainer>
+        </SectionBlurbsWrapper>
       </SectionBlurbs>
 	)
 }

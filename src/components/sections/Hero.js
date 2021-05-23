@@ -11,7 +11,7 @@ const StyledHero = styled.section`
     align-items: center;
     position: relative;
     text-align: center;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--nav-height));
 `
 
 const StyledBigText = styled.h1`

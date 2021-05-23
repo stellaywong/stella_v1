@@ -9,7 +9,7 @@ const mixins = {
       display: table;
     }
   `,
-  
+
   fullWidth: css`
     width: 100vw;
     position: relative;
@@ -17,7 +17,12 @@ const mixins = {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-  `
+  `,
+
+  textOutline: (color) => (css`
+    text-shadow: -1px -1px 0 ${color}, 1px -1px 0 ${color}, -1px 1px 0 ${color}, 1px 1px 0 ${color};
+  `)
+
 }
 
 
