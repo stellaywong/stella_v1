@@ -86,7 +86,7 @@ const Navbar = (props) => {
                                 timeout={2000} 
                                 classNames="fadedown">
                   <StyledNavHome>
-                    <Link to="/">StellaWong</Link>
+                    <Link to="/">Stella Wong</Link>
                   </StyledNavHome>
                 </CSSTransition>
               )}
