@@ -51,11 +51,8 @@ const StyledNavItems = styled.ul`
     backface-visibility: hidden;
     margin: 0 5px;
     padding: 5px;
-  
-
   }
 `
-
 
 
 const Navbar = (props) => {
