@@ -4,6 +4,7 @@ publisher: OSU The Journal
 featured: true
 featuredImage: ../../images/osu-the-journal-large.jpg
 external_link: http://thejournalmag.org/archives/18952
+award: Pushcart Prize Nominee
 poems: 
   - Search Engine
 ---
