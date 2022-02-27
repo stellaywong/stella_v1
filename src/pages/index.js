@@ -1,5 +1,7 @@
 import React, { useEffect } from "react"
 import { Layout, Hero, Featured, Blurbs } from '@components'
+import Books from './books.js'
+import '../styles/styles.scss'
 
 
 const IndexPage = (props) => {
@@ -9,11 +11,7 @@ const IndexPage = (props) => {
   }, [])
 
   return (
-    <Layout>
-      <Hero />
-      <Featured />
-      <Blurbs />
-    </Layout>
+    <Books />
   )
 }
 

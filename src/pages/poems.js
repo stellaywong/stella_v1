@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import { Layout } from '@components'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
@@ -82,8 +82,8 @@ const Poems = (props) => {
                 poems
                 featuredImage {
                   childImageSharp {
-                    fluid(maxWidth: 800, quality: 60) {
-                      ...GatsbyImageSharpFluid
+                    fluid(maxWidth: 800) {
+                      ...GatsbyImageSharpFluid_noBase64
                     }
                   }
                 }
@@ -95,7 +95,45 @@ const Poems = (props) => {
     
     return (
         <Layout>
-          <StyledContainer>
+          <div className="card-grid">
+            {query.allMarkdownRemark.edges.map((edge, i) => {
+              const { id } = edge.node;
+              const { publisher, featuredImage, external_link, award, poems } = edge.node.frontmatter;
+
+              const classes = ["card"];
+              featuredImage && classes.push("featured");
+
+              return <div className="card">
+                        <Img fluid={featuredImage.childImageSharp.fluid} />
+                        <div className="card-desc">
+                          <h3>
+                            <Link to={external_link} target="_blank">
+                              {publisher}
+                            </Link>
+                          </h3>
+                          <ul>
+                            {poems && poems.map((poem, idx) => <li key={id + "-poem-" + idx}>{poem}</li> )}
+                          </ul>
+                        </div>
+                    </div>
+
+              // return (
+              //   <StyledPoem>
+              //     {featuredImage && <>
+              //     {award && <div className="ribbon ribbon-top-right"><span>{award}</span></div>}
+              //     <a key={id} target="_blank" href={external_link} rel="noreferrer" >
+              //       <Img fluid={featuredImage.childImageSharp.fluid} /></a></>}
+              //     <StyledPoemContent>
+              //       <h3>{publisher}</h3>
+              //       {poems && poems.map((poem, idx) => <p key={id + "-poem-" + idx}>{poem}</p>)}
+              //     </StyledPoemContent>
+              //   </StyledPoem>
+              // )
+            })}
+
+          </div>
+
+          {/* <StyledContainer>
             <StyledGrid>
               {query.allMarkdownRemark.edges.map((edge, i) => {
                 const { id } = edge.node;
@@ -114,7 +152,7 @@ const Poems = (props) => {
                 )
               })}
             </StyledGrid>
-          </StyledContainer>
+          </StyledContainer> */}
         </Layout>
     )
 }

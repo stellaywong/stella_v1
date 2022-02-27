@@ -1,0 +1,46 @@
+.card-grid {
+  display: grid;
+  gap: 1em;
+
+  @media (min-width: $size-tablet-s) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $size-tablet-m) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: block;
+  align-self: flex-end;
+
+}
+
+.card-desc {
+  position: relative;
+  margin: 0 auto;
+  padding: 0.5em;
+  width: 80%;
+  top: -2em;
+  background: white;
+
+  h3 {
+    font-size: 1.5em;
+    margin: 0 0 0.25em;
+
+    a {
+      color: #5b9499;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  ul {
+    padding-left: 1.5em;
+    margin: 0;
+  }
+}

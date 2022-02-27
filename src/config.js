@@ -2,16 +2,16 @@ module.exports = {
     navLinks: [
         {
             name: "Books",
-            url: "/books",
+            url: "/",
         },
         {
             name: "Poems",
             url: "/poems",
         },
-        {
-            name: "Projects",
-            url: "/projects",
-        },
+        // {
+        //     name: "Projects",
+        //     url: "/projects",
+        // },
     ],
     srConfig: (config={}) => ({
         delay: 300,

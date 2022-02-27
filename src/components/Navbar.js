@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import { navLinks } from '@config'
 import styled from 'styled-components'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import NavToggle from '../styles/icons/hamburger.js'
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -56,58 +57,75 @@ const StyledNavItems = styled.ul`
 
 
 const Navbar = (props) => {
-    const [isMounted, setIsMounted] = useState(false);
+    const [showMenu, setShowMenu] = useState(false)
     // const [scrolledToTop, setScrollToTop] = useState(true);
     // const scrollDirection = useScrollDirection('down', 100);
 
     // const handleScroll = () => {
     // }
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setIsMounted(true);
-        }, 100);
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         setIsMounted(true);
+    //     }, 100);
 
-        return () => {
-            clearTimeout(timeout);
-        }
+    //     return () => {
+    //         clearTimeout(timeout);
+    //     }
 
-        // window.addEventListener('scroll', handleScroll);
-    }, [])
+    //     // window.addEventListener('scroll', handleScroll);
+    // }, [])
 
 
-    return (
-        <StyledNavbar>
-            <StyledContainer>
-              {isMounted && (
-                <CSSTransition key="home-link"
-                                in={true}
-                                appear={true}
-                                timeout={2000} 
-                                classNames="fadedown">
-                  <StyledNavHome>
-                    <Link to="/">Stella Wong</Link>
-                  </StyledNavHome>
-                </CSSTransition>
-              )}
-              <StyledNavItems>
-                <TransitionGroup component={null}>
-                    {isMounted && (
-                        navLinks.map(({name, url}, idx) => (
-                            <CSSTransition key={idx}
-                                            timeout={2000} 
-                                            classNames="fadedown">
-                                <li style={{ transitionDelay: `${idx + 1}00ms` }}>
-                                    <Link to={url}>{name}</Link>
-                                </li>
-                            </CSSTransition>
-                        ))
-                    )}
-                </TransitionGroup>
-              </StyledNavItems>
-            </StyledContainer>
-        </StyledNavbar>
-    )
+    return <div id='nav-container'>
+                <Link to="/">Stella Wong</Link>
+                <nav>
+                  <NavToggle visible={showMenu}
+                             onClick={() => setShowMenu(!showMenu)} />
+                  <ul id='primary-navigation' className={showMenu ? 'show-mobile' : null}>
+                    {navLinks.map(({name, url}, idx) => (
+                      <li>
+                        <Link to={url} activeClassName="active">{name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+    </div>
+    
+    
+
+    // return (
+    //     <StyledNavbar>
+    //         <StyledContainer>
+    //           {isMounted && (
+    //             <CSSTransition key="home-link"
+    //                             in={true}
+    //                             appear={true}
+    //                             timeout={2000} 
+    //                             classNames="fadedown">
+    //               <StyledNavHome>
+    //                 <Link to="/">Stella Wong</Link>
+    //               </StyledNavHome>
+    //             </CSSTransition>
+    //           )}
+    //           <StyledNavItems>
+    //             <TransitionGroup component={null}>
+    //                 {isMounted && (
+    //                     navLinks.map(({name, url}, idx) => (
+    //                         <CSSTransition key={idx}
+    //                                         timeout={2000} 
+    //                                         classNames="fadedown">
+    //                             <li style={{ transitionDelay: `${idx + 1}00ms` }}>
+    //                                 <Link to={url}>{name}</Link>
+    //                             </li>
+    //                         </CSSTransition>
+    //                     ))
+    //                 )}
+    //             </TransitionGroup>
+    //           </StyledNavItems>
+    //         </StyledContainer>
+    //     </StyledNavbar>
+    // )
 }
 
 

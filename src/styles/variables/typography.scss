@@ -1,0 +1,14 @@
+@mixin font-face($family, $url, $weight: '400', $style: 'normal', ) {
+  font-family: $family;
+  src: url($url) format('woff2');
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@font-face {
+  @include font-face('Cormorant Garamond', '../fonts/CormorantGaramond-Light.ttf', 400, 'normal');
+}
+
+@font-face {
+  @include font-face('Cormorant Garamond', '../fonts/CormorantGaramond-Regular.ttf', 700, 'normal');
+}

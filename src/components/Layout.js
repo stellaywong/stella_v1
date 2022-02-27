@@ -1,3 +1,4 @@
+import '../styles/styles.scss'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Head, Navbar } from '@components'
@@ -24,12 +25,11 @@ const Layout = (props) => {
 
         <div id="root">
             <ThemeProvider theme={theme}>
-                <GlobalStyle />
+                {/* <GlobalStyle /> */}
                 <Navbar />
-                <StyledMain>
+                <div className='main-container'>
                     {props.children}
-                </StyledMain>
-
+                </div>
             </ThemeProvider>
         </div>
     </>)
