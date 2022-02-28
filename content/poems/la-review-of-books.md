@@ -1,7 +1,6 @@
 ---
 date: "2019-02-01"
 publisher: LA Review of Books
-featured: true
 featuredImage: ../../images/la-review-of-books-large.jpg
 external_link: https://www.lareviewofbooks.org/edition/quarterly-journal-no-21-epistolary-issue/
 poems: 

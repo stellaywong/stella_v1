@@ -8,10 +8,14 @@ module.exports = {
             name: "Poems",
             url: "/poems",
         },
-        // {
-        //     name: "Projects",
-        //     url: "/projects",
-        // },
+        {
+            name: "Projects",
+            url: "/projects",
+        },
+        {
+          name: "Events",
+          url: "/events",
+      },
     ],
     srConfig: (config={}) => ({
         delay: 300,

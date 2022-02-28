@@ -52,6 +52,7 @@ const Hero = (props) => {
 
     return (
         <StyledHero id="hero">
+
             <TransitionGroup component={null}>
                 {items.map((item, i) => (
                     <CSSTransition key={i} 

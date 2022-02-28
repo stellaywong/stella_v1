@@ -4,6 +4,5 @@ title: "Global Female Literacy Rates"
 description: A dynamic data visualization in force-directed graph data visualization in force-directed graph.
 external_link: "http://stella-wong.com/Literacy/"
 featuredMp4: literacy.mp4
-featured: true
 ---
 

@@ -78,19 +78,19 @@ const Navbar = (props) => {
 
 
     return <div id='nav-container'>
-                <Link to="/">Stella Wong</Link>
+                <Link to="/" className='logo'>Stella Wong</Link>
                 <nav>
                   <NavToggle visible={showMenu}
                              onClick={() => setShowMenu(!showMenu)} />
                   <ul id='primary-navigation' className={showMenu ? 'show-mobile' : null}>
                     {navLinks.map(({name, url}, idx) => (
-                      <li>
+                      <li key={name}>
                         <Link to={url} activeClassName="active">{name}</Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
-    </div>
+            </div>
     
     
 

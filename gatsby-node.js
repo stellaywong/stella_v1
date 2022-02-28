@@ -1,3 +1,4 @@
+const { dirname } = require('path');
 const path = require('path')
 
 
@@ -68,6 +69,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
                 '@config': path.resolve(__dirname, 'src/config'),
                 '@fonts': path.resolve(__dirname, 'src/fonts'),
                 '@hooks': path.resolve(__dirname, 'src/hooks'),
+                '@images': path.resolve(__dirname, 'images'),
                 '@mp4s': path.resolve(__dirname, 'mp4s'),
                 '@pages': path.resolve(__dirname, 'src/pages'),
                 '@styles': path.resolve(__dirname, 'src/styles'),

@@ -112,11 +112,6 @@ const Featured = (props) => {
             order: DESC
           },
           filter: {
-            frontmatter: {
-              featured: {
-                eq: true
-              }
-            },
             fields: {
               category: {
                 eq: "poems"
@@ -132,7 +127,7 @@ const Featured = (props) => {
                 external_link
                 award
                 poems
-                featuredImage {
+                image {
                   childImageSharp {
                     fluid(maxWidth: 800, quality: 60) {
                       ...GatsbyImageSharpFluid
@@ -181,7 +176,7 @@ const Featured = (props) => {
         <HighlightCovers>
           {data.allMarkdownRemark.edges.map((edge, idx, arr) => {
             const { id, frontmatter } = edge.node;
-            const { featuredImage } = frontmatter; 
+            const { image } = frontmatter; 
             const isActive = activeIdx === idx;
             
             return <CSSTransition key={id + "-image"}
@@ -193,7 +188,7 @@ const Featured = (props) => {
                     <CoverImage>
                         <Img style={{ height: "100%", width: "100%" }}
                              imgStyle={{ objectFit: "contain" }}
-                             fluid={featuredImage.childImageSharp.fluid} />
+                             fluid={image.childImageSharp.fluid} />
                     </CoverImage>
                   </CSSTransition>
           })}

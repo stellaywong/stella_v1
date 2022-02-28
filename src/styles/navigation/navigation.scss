@@ -5,8 +5,11 @@
   font-size: 1.25em;
   text-transform: uppercase;
 
+  .logo {
+    font-weight: 700;
+  }
+
   a {
-    display: block;
     color: black;
     text-decoration: none;
 
@@ -32,13 +35,12 @@
 
 #primary-navigation {
   display: flex;
-  visibility: hidden;
+  visibility: visible;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   position: fixed;
   gap: 1em;
-  padding: 0;
+  padding: 0 0 0 1.5em;
   margin: 0;
   list-style: none;
   inset: 0 0 0 100%;
@@ -91,7 +93,7 @@ $hamburger-height: 4px;
 
   &.active {
     & .hamburger-inner:nth-child(1){
-      transform: translateY(10px) rotate(45deg);
+      transform: translateY(9px) rotate(45deg);
     }
 
     & .hamburger-inner:nth-child(2){
