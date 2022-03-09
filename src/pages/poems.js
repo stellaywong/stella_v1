@@ -49,7 +49,9 @@ const Poems = (props) => {
               const { publisher, featuredImage, external_link, award, poems } = edge.node.frontmatter;
 
               return <div key={id} className="card">
-                        <Img fluid={featuredImage.childImageSharp.fluid} />
+                        <a href={external_link} target="_blank">
+                          <Img fluid={featuredImage.childImageSharp.fluid} />
+                        </a>
                         <div className="card-info">
                           <h3>
                             <a href={external_link} target="_blank">
