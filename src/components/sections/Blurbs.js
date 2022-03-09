@@ -5,7 +5,6 @@ import Img from 'gatsby-image'
 import { srConfig } from '@config'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
-import ScrollReveal from 'scrollreveal';
 import { CSSTransition } from 'react-transition-group'
 import { transition } from '@utils/util'
 
@@ -157,10 +156,6 @@ const Blurbs = (props) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [animate, setAnimate] = useState(true);
   const titleRef = useRef(null);
-
-  useEffect(() => {
-    ScrollReveal().reveal(titleRef.current, srConfig({origin:"right"}));
-  }, []);
 
   const handleChange = (idx) => {
     const newIdx = idx || idx === 0 ? idx : (activeIdx + 1) % data.allMarkdownRemark.edges.length;

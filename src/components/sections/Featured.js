@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 import { srConfig } from '@config'
-import ScrollReveal from 'scrollreveal';
 import { CSSTransition } from 'react-transition-group'
 import { transition } from '@utils/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -143,10 +142,6 @@ const Featured = (props) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [animate, setAnimate] = useState(true);
   const titleRef = useRef(null);
-
-  useEffect(() => {
-    ScrollReveal().reveal(titleRef.current, srConfig({origin:"left"}));
-  }, []);
   
   useEffect(() => {
       let timeoutAnimate = setTimeout(handleChange, 4000);
