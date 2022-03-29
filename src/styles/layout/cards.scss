@@ -13,19 +13,37 @@
   .card {
     display: block;
     align-self: flex-end;
+    position: relative;
+    margin-bottom: 2em;
 
-    &.featured {
-      grid-row: span 2;
-      grid-column: span 2;
+    .gatsby-image-wrapper {
+      max-height: 360px;
+
+      img {
+        object-position: top !important;
+      }
+    }
+
+    @media (min-width: $size-tablet-m) {
+      &.featured {
+        grid-row: span 2;
+        grid-column: span 2;
+  
+        .gatsby-image-wrapper {
+          max-height: 720px;
+        }
+      }
     }
   }
 
   .card-info {
-    position: relative;
+    position: absolute;
     margin: 0 auto;
     padding: 0.5em;
     width: 80%;
-    top: -2em;
+    left: 50%;
+    bottom: -1em;
+    transform: translateX(-50%);
     background: white;
     box-shadow: 1px 1px 6px #a1a1a1;
   
@@ -71,6 +89,7 @@
   .card-vid {
     video {
       display: block;
+      margin: 0 auto;
     }
   }
 
