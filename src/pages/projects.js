@@ -49,7 +49,7 @@ const Poems = (props) => {
 
 
                         <div className="card-info">
-                          <h3>
+                          <h3 className="card-title">
                             <a href={external_link} target="_blank">
                               {title}
                             </a>

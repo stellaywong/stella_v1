@@ -78,12 +78,16 @@
   flex-direction: column;
   gap: 1em;
 
+  h2 {
+    margin: 0;
+  }
+
   .card {
     display: flex;
     flex-direction: column;
+    padding: 1em;
     background: white;
     box-shadow: 1px 1px 6px #a1a1a1;
-
   }
 
   .card-vid {
@@ -93,24 +97,17 @@
     }
   }
 
-  .card-header {
+  .card-date {
     display: block;
-    padding: 1em;
     white-space: nowrap;
+  }
 
-    h2 {
-      margin: 0;
-    }
+  .card-title {
+    font-size: 1.25em;
+    margin: 0.25em 0;
   }
 
   .card-info {
-    padding: 0.5em 1em;
-
-    h3 {
-      font-size: 2em;
-      margin: 0;
-    }
-
     a {
       color: $color-secondary;
       text-decoration: none;
@@ -124,15 +121,7 @@
   @media (min-width: $size-tablet-s) {
     .card {
       flex-direction: row;
-      gap: 2em;
-    }
-
-    .card-info {
-      padding: 1em;
-  
-      h3 {
-        margin: 0.5em 0;
-      }
+      gap: 3em;
     }
   }
 }
