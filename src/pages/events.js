@@ -26,26 +26,43 @@ const Events = (props) => {
             html
             frontmatter {
               date
+              title
+              external_link
             }
           }
         }
       }
     }`)
 
+  const renderTitle = (title, external_link) => {
+    if (!title) {
+      return null;
+    }
+
+    return <h3 className="card-title">
+      {external_link 
+        ? <a href={external_link} target="_blank">{ title }</a>
+        : { title } }
+    </h3>
+  }
+
   return <Layout>
           <div className="card-stack">
             {query.allMarkdownRemark.edges.map((edge, i) => {
               const { id, html } = edge.node;
-              const { date } = edge.node.frontmatter;
+              const { date, title, external_link } = edge.node.frontmatter;
               
               const f_date = new Date(date);
               const s_date = f_date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: "utc" });
 
               return <div key={id} className="card">
-                        <div className="card-header">
-                          <h2>{s_date}</h2>
+                        <h2 className="card-date">
+                          {s_date}
+                        </h2>
+                        <div className="card-info">
+                          {renderTitle(title, external_link)}
+                          <div dangerouslySetInnerHTML={{ __html: html }} />
                         </div>
-                        <div className="card-info" dangerouslySetInnerHTML={{ __html: html }} />
                     </div>
             })}
           </div>
