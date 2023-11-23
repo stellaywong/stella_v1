@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import { Layout } from '@components'
 
 
@@ -41,7 +41,7 @@ const Events = (props) => {
 
     return <h3 className="card-title">
       {external_link 
-        ? <a href={external_link} target="_blank">{ title }</a>
+        ? <a href={external_link} target="_blank" rel="noreferrer">{ title }</a>
         : { title } }
     </h3>
   }

@@ -13,9 +13,13 @@ module.exports = {
             url: "/projects",
         },
         {
+            name: "Music",
+            url: "/music"
+        },
+        {
           name: "Events",
           url: "/events",
-      },
+        },
     ],
     srConfig: (config={}) => ({
         delay: 300,

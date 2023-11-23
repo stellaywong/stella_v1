@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { navLinks } from '@config'
 import styled from 'styled-components'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import NavToggle from '../styles/icons/hamburger.js'
 
 const StyledNavbar = styled.nav`

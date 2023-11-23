@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
-import { srConfig } from '@config'
 import { CSSTransition } from 'react-transition-group'
 import { transition } from '@utils/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -142,13 +141,6 @@ const Featured = (props) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [animate, setAnimate] = useState(true);
   const titleRef = useRef(null);
-  
-  useEffect(() => {
-      let timeoutAnimate = setTimeout(handleChange, 4000);
-      return () => {
-        clearTimeout(timeoutAnimate);
-      }
-  }, [activeIdx])
 
   const handleChange = (idx) => {
     const newIdx = idx || idx === 0 ? idx : (activeIdx + 1) % data.allMarkdownRemark.edges.length;
@@ -158,6 +150,13 @@ const Featured = (props) => {
       setAnimate(true);
     }, transition.normal)
   }
+  
+  useEffect(() => {
+      let timeoutAnimate = setTimeout(handleChange, 4000);
+      return () => {
+        clearTimeout(timeoutAnimate);
+      }
+  }, [activeIdx])
 
   const { edges } = data.allMarkdownRemark;
   const { publisher, poems, external_link } = edges[activeIdx].node.frontmatter;

@@ -2,7 +2,7 @@ import '../styles/styles.scss'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Head, Navbar } from '@components'
-import { GlobalStyle, theme } from '@styles'
+import { theme } from '@styles'
 import styled from 'styled-components'
 
 

@@ -46,15 +46,15 @@ const Poems = (props) => {
           <div className="card-grid">
             {query.allMarkdownRemark.edges.map((edge, i) => {
               const { id } = edge.node;
-              const { publisher, featuredImage, external_link, award, poems } = edge.node.frontmatter;
+              const { publisher, featuredImage, external_link, poems } = edge.node.frontmatter;
 
               return <div key={id} className="card">
-                        <a href={external_link} target="_blank">
+                        <a href={external_link} target="_blank" rel="noreferrer">
                           <Img fluid={featuredImage.childImageSharp.fluid} />
                         </a>
                         <div className="card-info">
                           <h3>
-                            <a href={external_link} target="_blank">
+                            <a href={external_link} target="_blank" rel="noreferrer">
                               {publisher}
                             </a>
                           </h3>

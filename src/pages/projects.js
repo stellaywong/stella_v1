@@ -40,17 +40,16 @@ const Poems = (props) => {
               const { id } = edge.node;
               const { title, description, external_link, featuredMp4 } = edge.node.frontmatter;
 
-              return <div key={id} className="card">
+              return <div key={id} className="card card-h">
                         <div className="card-vid">
                           <video width={300} height={300} autoPlay loop muted>
                             <source src={require(`@mp4s/${featuredMp4}`)} type="video/mp4" />
                           </video>
                         </div>
 
-
                         <div className="card-info">
                           <h3 className="card-title">
-                            <a href={external_link} target="_blank">
+                            <a href={external_link} target="_blank" rel="noreferrer">
                               {title}
                             </a>
                           </h3>
