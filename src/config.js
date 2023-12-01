@@ -2,11 +2,11 @@ module.exports = {
     navLinks: [
         {
             name: "Music",
-            url: "/"
+            url: "/music"
         },
         {
             name: "Books",
-            url: "/books",
+            url: "/",
         },
         {
             name: "Poems",
