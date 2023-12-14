@@ -90,11 +90,9 @@
     box-shadow: 1px 1px 6px #a1a1a1;
   }
 
-  .card-vid {
-    video {
-      display: block;
-      margin: 0 auto;
-    }
+  .card-featured {
+    display: block;
+    margin: 0 auto;
   }
 
   .card-date {
@@ -108,6 +106,8 @@
   }
 
   .card-info {
+    flex: 1;
+
     a {
       color: $color-secondary;
       text-decoration: none;
@@ -118,7 +118,7 @@
     }
   }
 
-  @media (min-width: $size-tablet-s) {
+  @media (min-width: $size-tablet-m) {
     .card-h {
       flex-direction: row;
       gap: 3em;
