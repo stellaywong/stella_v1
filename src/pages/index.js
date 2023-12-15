@@ -1,6 +1,6 @@
 import React from "react"
-import Music from './music.js'
 import '../styles/styles.scss'
+import Music from "./music.js"
 
 
 const IndexPage = (props) => {
