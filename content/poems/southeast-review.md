@@ -1,7 +1,7 @@
 ---
 date: "2022-11-26"
 publisher: Southeast Review
-featuredImage: ../../images/southeast-review-cover.jpg
+featuredImage: ../../images/southeast-review-cover.jpeg
 external_link: https://www.southeastreview.org/single-post/40-2-stella-wong
 poems: 
   - who are you
