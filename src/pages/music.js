@@ -3,9 +3,8 @@ import { graphql, useStaticQuery } from "gatsby"
 import { Layout } from '@components'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import Img from 'gatsby-image'
-
-
+import image1 from '@images/music_images/guzheng.jpeg';
+import image2 from '@images/music_images/piano.jpeg';
 
 
 const Music = (props) => {
@@ -30,13 +29,6 @@ const Music = (props) => {
               title
               audio_url
               description
-              featuredImage {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-              }
             }
           }
         }
@@ -48,14 +40,9 @@ const Music = (props) => {
         <div className="card-stack">
           {data.allMarkdownRemark.edges.map((edge, idx) => {
             const { id, frontmatter } = edge.node;
-            const { title, audio_url, description, featuredImage } = frontmatter;
+            const { title, audio_url, description } = frontmatter;
 
             return <div key={id} className="card card-h">
-                    {featuredImage &&
-                    <div className="card-featured">
-                      <Img style={{ width: 300, height: 300, margin: "0 auto" }} fluid={featuredImage.childImageSharp.fluid} /> 
-                    </div> }
-
                     <div className="card-info">
                       <h3 className="card-title">
                         {title}
@@ -67,7 +54,12 @@ const Music = (props) => {
                     </div>
                   </div>
           })}
+
+          <img src={image1} alt="" style={{ width: "100%", maxWidth: 600, alignSelf: "center" }} />
+          <img src={image2} alt="" style={{ width: "100%", maxWidth: 600, alignSelf: "center" }} />
         </div>
+
+        
     </Layout>
 }
 

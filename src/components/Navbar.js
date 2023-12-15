@@ -1,58 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { navLinks } from '@config'
-import styled from 'styled-components'
 import NavToggle from '../styles/icons/hamburger.js'
 
-const StyledNavbar = styled.nav`
-  display: flex;
-  position: relative;
-  top: 0;
-  width: 100%;
-  height: var(--nav-height);
-  justify-content: center;
-  align-items: center;
-  background-color: var(--color-bg);
-  z-index: 10;
-`
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    letter-spacing: 1px;
-    &:hover {
-      color: var(--color-secondary);
-    }
-  }
-`
-
-const StyledNavHome = styled.div`
-  margin: 5px auto;
-
-  a {
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-`
-
-const StyledNavItems = styled.ul`
-  display: flex;
-  margin: 0;
-  list-style: none;
-
-  li {
-    position: relative;
-    backface-visibility: hidden;
-    margin: 0 5px;
-    padding: 5px;
-  }
-`
 
 
 const Navbar = (props) => {

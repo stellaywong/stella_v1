@@ -1,11 +1,11 @@
 import React from "react"
-import Books from './books.js'
 import '../styles/styles.scss'
+import Music from "./music.js"
 
 
 const IndexPage = (props) => {
   return (
-    <Books />
+    <Music />
   )
 }
 
