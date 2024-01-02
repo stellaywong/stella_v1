@@ -1,5 +1,7 @@
 ---
 date: "2022-03-24"
+title: Iowa Review Reading
+external_link: https://lithub.com/when-in-philly-a-selection-of-offsite-events-at-this-years-awp/
 ---
 
-The Iowa Review Reading, Milkboy: 6:30PM - 8:00PM
+Milkboy: 6:30PM - 8:00PM
