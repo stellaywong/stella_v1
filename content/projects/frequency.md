@@ -2,7 +2,7 @@
 date: "2024-01-05"
 title: "Frequency"
 description: Upload an image to make a song
-external_link: "frequency.html"
+external_link: "/frequency.html"
 featuredMp4: frequency.mp4
 ---
 
