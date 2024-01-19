@@ -5,10 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title></title>
+    <link rel="stylesheet" href="frequency.css">
 </head>
 
 <body>
-    <input type="file" id="file-input">
+    <p>Convert any picture to a song</p>
+    <ol>How it works:</ol>
+
+    <div class="card-stack">
+        <ol>
+        <div>🖼️<li class="card">1. Upload your picture <br> (try a small one <br>with many colors!)</li></div>
+        <div>🎵<li class="card">2. We generate a unique song <br> where each note is your picture's <br>RGB color pixels</li></div>
+        <div>💽<li class="card">3. Enjoy your song!</li></div>
+        </ol>
+    </div>
+
+    <p></p>
+
+    <input type="file" id="file-input"> 
+    <br>
+    <label for="input_image">Allowed input types: png, jpeg, jpg</label>
     <canvas id="canvas" width="1200" height="400"></canvas>
     <script src="frequency.js"></script>
 
