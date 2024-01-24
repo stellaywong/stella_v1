@@ -38,10 +38,11 @@ const Music = (props) => {
     
     return <Layout>
         <div className="card-stack">
+        <img src={image2} alt="" style={{ width: "100%", maxWidth: 600, alignSelf: "center" }} />
           {data.allMarkdownRemark.edges.map((edge, idx) => {
             const { id, frontmatter } = edge.node;
             const { title, audio_url, description } = frontmatter;
-
+            
             return <div key={id} className="card card-h">
                     <div className="card-info">
                       <h3 className="card-title">
@@ -56,7 +57,6 @@ const Music = (props) => {
           })}
 
           <img src={image1} alt="" style={{ width: "100%", maxWidth: 600, alignSelf: "center" }} />
-          <img src={image2} alt="" style={{ width: "100%", maxWidth: 600, alignSelf: "center" }} />
         </div>
 
         
