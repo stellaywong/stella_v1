@@ -5,5 +5,5 @@ featuredImage: ../../images/osu-the-journal-2.png
 external_link: https://thejournalmag.org/archives/22480
 poems: 
   - is it viable to date yourself?
-  - [the die-off is]
+  - "[the die-off is]"
 ---
