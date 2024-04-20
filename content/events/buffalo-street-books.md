@@ -1,6 +1,6 @@
 ---
 date: "2024-04-24"
-title: The Short Short
+title: The Short Short Reading
 external_link: https://www.buffalostreetbooks.com/event/new-voices-festival-short-short
 ---
 
