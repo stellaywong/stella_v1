@@ -1,8 +1,17 @@
-<!-- ---
-date: "2020-01-01"
-title: Spooks
-image: ../../images/spooks-cover.jpeg
 ---
+date: "2024-05-01"
+title: Stem
+image: ../../images/stem-temporary-cover.jpeg
+---
+> Advanced Praise for Stem:
+
+> The poems in this volume demonstrate an extraordinary sensibility, which is imaginative, perceptive, and intrepid. Reading these poems is like riding a verbal roller coaster, full of excitement and surprises.
+>
+> -- <cite>Ha Jin</cite>
+
+> Stella Wong's Orpheus is female, and the poet herself a forceful Eurydice who refuses to return to the Underground and play dead. She's a switched-on, savvy, confident, get-out-of-the way poet, "naked voiced," aggressively witty, her "expression . . . violent." American poetry just now has need of her fighting spirit. Her lines are not to be dull or whiny: "Every grapple is over / submission." The poetry is perpetually on the verge of being self-interrupted by its own robustness. It rejects "gray areas." Its vivid imagining doesn't stop.  Nodding again and again to various experimental women composers of the 60s and forward, Wong herself has a taste of the synthesizer's surrealism and something of its effect of starting right up and made on the spot. "Where / you don't have a nested hierarchy, . . . the synth is . . . personal, the synth is built." She goes where her uncaptured nature and her powers of observation take her: "The best things to score are / like us, unnumbered."
+>
+> -- <cite>Cal Bedient</cite>
 
 > Stella Wong wields the kind of weaponry I live to be slayed by. Funny as hell, delightfully strange and full of a sneaky and giant heart, holds its beloved subjects — friends, siblings, Lucy Liu, grapefruits, all the jesuses the poet can muster — and gives them body with wicked imagination and knock-out tenderness. This book will knock the windows of your heart not just open, but out the frame once you see how far Wong can dive into fear and the terrible possibles of humanness can still carry back something like hope, gooder than joy. Wong has crafted a brief, but mighty collection of poems that point towards the bright possibly of power to make us better dreamers, better lovers, better homies, and oh my jesuses how thankful I am for this abundant offering. I'm sure you will be too.
 >
@@ -32,4 +41,4 @@ image: ../../images/spooks-cover.jpeg
 > You and Stella Wong are the last two people on Earth. You’re going to witness her “ride in/to hell” and you will need to prepare yourself for the moment when she decides to use her “daddy voice” on Jesus. You’re the last two people on Earth because the truth—the truth of Stella Wong’s voice, the truth of these poems—has scared away the timid. But be strong. The apocalypse of American Zero is scary and dangerous, yes, but it’s also a lot of fun.
 >
 > -- <cite>Josh Bell</cite>
- -->
+
