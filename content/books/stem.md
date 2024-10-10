@@ -3,13 +3,20 @@ date: "2024-05-01"
 title: Stem
 image: ../../images/stem-temporary-cover.jpeg
 ---
-> [Click here to preorder the book](https://share.hsforms.com/1mLBk3MYkSCWC7k4BrTEmHw4q07a?book_title=Stem&isbn=9780691264042&publication_date__us_=2024-10-08&publication_date__uk_=2024-10-08&__hstc=209007245.4fbd5f9f65eac32e35988576b66b6fa4.1717101302170.1717101302170.1717101302170.1&__hssc=209007245.2.1717101302170&__hsfp=2125272464 "Princeton University Press Preorder Notification Form").
+> [Click here to order the book](https://press.princeton.edu/books/paperback/9780691264042/stem "Princeton University Press STEM Book").
 
 > Publication date: 2024-10-08
+
+
 > ISBN: 9780691264042
 
 
 > Advanced Praise for Stem:
+
+
+> Perceptive and gripping. . . . [Stem is] an impressive series of dramatic monologues. . . As Wong dips in and out of various personae, her biting cleverness remains consistent throughout. These insistent poems achieve a brash and beautiful irreverence.
+>
+> -- <cite>Publishers Weekly</cite>
 
 
 > The poems in this volume demonstrate an extraordinary sensibility, which is imaginative, perceptive, and intrepid. Reading these poems is like riding a verbal roller coaster, full of excitement and surprises.
